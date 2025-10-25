@@ -78,6 +78,21 @@
 
 .verse-container.active { opacity: 1; pointer-events: auto; }
 
+/* Mobile - shift verse content higher to prevent overlap with translation */
+@media screen and (max-width: 768px) {
+    .verse-container {
+        padding: 8vh 8vw 18vh 8vw; /* More bottom padding, less top */
+        justify-content: flex-start;
+        padding-top: 15vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .verse-container {
+        padding: 12vh 6vw 20vh 6vw;
+    }
+}
+
 /* Individual verse - stacked rows */
 .verse {
     display: none; /* hidden by default to avoid accidental overlap */
@@ -126,6 +141,23 @@
 
 .translation-display.visible {
     opacity: 0.9;
+}
+
+/* Mobile - move translation much lower to avoid overlap */
+@media screen and (max-width: 768px) {
+    .translation-display {
+        bottom: 12vh;
+        width: 90%;
+        padding: 0 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .translation-display {
+        bottom: 10vh;
+        width: 92%;
+        padding: 0 0.75rem;
+    }
 }
 
 /* ===== MOBILE RESPONSIVE TILE LAYOUT ===== */
