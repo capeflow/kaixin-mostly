@@ -88,6 +88,11 @@ body.dark-mode .stone:not(.golden-active) .stone-band {
 /* Optional middle section for future use */
 .stone-mid { display: flex; align-items: center; justify-content: center; }
 
+/* Hide English translations when disabled */
+body.hide-english .english {
+    display: none;
+}
+
 /* Soft ambient wash behind the active verse */
 .verse.active::before {
     content: '';

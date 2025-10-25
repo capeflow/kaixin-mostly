@@ -64,6 +64,7 @@ class KaixinApp {
         this.settingsSave = document.getElementById('settings-save');
         this.settingsList = document.getElementById('settings-list');
         this.darkModeToggle = document.getElementById('dark-mode-toggle');
+        this.englishToggle = document.getElementById('english-toggle');
  
         this.updatePlayButtonIcon(false);
         
@@ -185,6 +186,27 @@ class KaixinApp {
             } else {
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('darkMode', 'false');
+            }
+        });
+        
+        // Load English translation preference from localStorage (default: hidden)
+        const showEnglish = localStorage.getItem('showEnglish');
+        if (showEnglish === 'true') {
+            document.body.classList.remove('hide-english');
+            this.englishToggle.checked = true;
+        } else {
+            document.body.classList.add('hide-english');
+            this.englishToggle.checked = false;
+        }
+        
+        // English translation toggle
+        this.englishToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.remove('hide-english');
+                localStorage.setItem('showEnglish', 'true');
+            } else {
+                document.body.classList.add('hide-english');
+                localStorage.setItem('showEnglish', 'false');
             }
         });
         

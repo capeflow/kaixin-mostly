@@ -112,6 +112,17 @@
                     <input type="checkbox" id="dark-mode-toggle" class="settings-toggle-input">
                     <span class="settings-toggle-slider"></span>
                 </label>
+                
+                <label class="settings-toggle-item">
+                    <span class="settings-toggle-label">
+                        <svg class="settings-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 7h16M4 12h16M4 17h16"/>
+                        </svg>
+                        <span>Show English</span>
+                    </span>
+                    <input type="checkbox" id="english-toggle" class="settings-toggle-input">
+                    <span class="settings-toggle-slider"></span>
+                </label>
             </div>
             
             <!-- Tile Display Section -->
@@ -352,7 +363,7 @@
         .settings-close { border: none; background: transparent; font-size: 20px; cursor: pointer; color: var(--carved-medium); }
         
         /* Settings sections */
-        .settings-section { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
+        .settings-section { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 10px; }
         .settings-section:last-of-type { border-bottom: none; margin-bottom: 0; }
         .settings-section-title { margin: 0 0 8px; font-size: 14px; font-weight: 500; color: var(--carved-deep); letter-spacing: .03em; }
         .settings-sub { margin: 6px 0 10px; color: var(--carved-medium); font-size: 13px; }
