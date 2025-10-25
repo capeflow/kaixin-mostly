@@ -78,18 +78,18 @@
 
 .verse-container.active { opacity: 1; pointer-events: auto; }
 
-/* Mobile - shift verse content higher to prevent overlap with translation */
+/* Mobile - shift verse content much higher to prevent overlap with translation */
 @media screen and (max-width: 768px) {
     .verse-container {
-        padding: 8vh 8vw 18vh 8vw; /* More bottom padding, less top */
         justify-content: flex-start;
-        padding-top: 15vh;
+        padding: 20vh 8vw 25vh 8vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     .verse-container {
-        padding: 12vh 6vw 20vh 6vw;
+        justify-content: flex-start;
+        padding: 18vh 6vw 30vh 6vw;
     }
 }
 
@@ -112,6 +112,22 @@
     display: flex; /* show only the active verse */
     opacity: 1;
     transform: translateX(0);
+}
+
+/* Mobile verse adjustments - reduce padding to fit higher on screen */
+@media screen and (max-width: 768px) {
+    .verse {
+        padding: 2vh 4vw;
+        gap: clamp(0.6rem, 1.5vh, 1.2rem);
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .verse {
+        padding: 1vh 3vw;
+        gap: clamp(0.5rem, 1.2vh, 1rem);
+    }
 }
 
 /* A verse-row wraps stones to multiple centered rows */
@@ -146,7 +162,7 @@
 /* Mobile - move translation much lower to avoid overlap */
 @media screen and (max-width: 768px) {
     .translation-display {
-        bottom: 12vh;
+        bottom: 14vh;
         width: 90%;
         padding: 0 1rem;
     }
@@ -154,7 +170,7 @@
 
 @media screen and (max-width: 480px) {
     .translation-display {
-        bottom: 10vh;
+        bottom: 16vh;
         width: 92%;
         padding: 0 0.75rem;
     }
