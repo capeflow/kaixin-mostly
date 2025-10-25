@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>但願人長久</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&display=swap');
+
+        :root {
+            /* Washi paper - warm, organic white */
+            --paper: #fefefc;
+            --paper-shadow: rgba(0, 0, 0, 0.02);
+            
+            /* Stone - warm whites with subtle variance */
+            --stone-base: #f8f8f6;
+            --stone-light: #fcfcfb;
+            --stone-dark: #f0f0ee;
+            
+            /* Carved text - like indentations catching shadow */
+            --carved-deep: #a8a8a4;
+            --carved-medium: #c4c4c0;
+            --carved-light: #d8d8d4;
+            
+            /* Borders */
+            --border-color: #e8e8e6;
+            
+            /* Shadows - soft, diffused, natural */
+            --shadow-ambient: rgba(0, 0, 0, 0.04);
+            --shadow-direct: rgba(0, 0, 0, 0.08);
+            --shadow-soft: rgba(0, 0, 0, 0.03);
+            
+            /* Stone depth */
+            --stone-sunken: 
+                inset 3px 3px 6px var(--shadow-ambient),
+                inset -2px -2px 6px var(--stone-light);
+            --stone-raised: 
+                -4px -4px 8px var(--stone-light),
+                4px 4px 8px var(--shadow-ambient),
+                inset -1px -1px 2px var(--shadow-soft);
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--paper);
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+            padding: 4vh 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The canvas - now a viewport for camera movement */
+        #viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--paper);
+        }
+
+        /* Carousel container - centers the 5-tile carousel */
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.5s ease-out;
+        }
+
+        .carousel-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* The horizontal track containing tiles */
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(30px, 4vw, 60px);
+            padding: 0 10vw;
+            position: relative;
+        }
+
+        /* Translation display (below carousel) */
+        .translation-display {
+            position: fixed;
+            bottom: 15vh;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            color: var(--carved-light);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+            font-weight: 300;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            max-width: 800px;
+            padding: 0 2rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .translation-display.visible {
+            opacity: 0.7;
+        }
+
+        /* The stone tile */
+        /* Mahjong tile styling - uniform height for all stones */
+        .stone {
+            position: relative;
+            width: clamp(120px, 10vw, 140px);
+            height: auto;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            will-change: transform, opacity;
+        }
+
+        /* Carousel position classes - 5-tile system */
+        .stone.position-center {
+            transform: scale(1.8);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .stone.position-adjacent {
+            transform: scale(1);
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .stone.position-edge {
+            transform: scale(0.8);
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        /* First tiles fade in gradually */
+        .stone.position-first {
+            transform: scale(1);
+            opacity: 0.4;
+        }
+
+        .stone.position-second {
+            transform: scale(1.3);
+            opacity: 0.7;
+        }
+
+        /* Last tiles fade out gradually */
+        .stone.position-penultimate {
+            transform: scale(1.3);
+            opacity: 0.7;
+        }
+
+        .stone.position-last {
+            transform: scale(1);
+            opacity: 0.4;
+        }
+
+        .stone.focus .stone-top::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 8px;
+            background: radial-gradient(ellipse at center, var(--shadow-ambient) 0%, transparent 70%);
+            filter: blur(4px);
+            opacity: 0.6;
+        }
+
+        /* Top section - the character area (fixed height for uniformity) */
+        .stone-top {
+            width: 100%;
+            height: clamp(140px, 16vh, 170px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1.25rem, 2.5vh, 1.75rem) clamp(0.75rem, 1.5vw, 1rem);
+            border-radius: clamp(6px, 0.8vw, 10px);
+            background: var(--stone-base);
+            box-shadow: var(--stone-sunken);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Bottom section - the meaning label (fixed height, additive below) */
+        .stone-bottom {
+            width: 100%;
+            height: clamp(40px, 4.8vh, 48px);
+            background: linear-gradient(
+                to bottom,
+                rgba(248, 248, 246, 0.4),
+                var(--stone-base)
+            );
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.04),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(208, 208, 204, 0.2);
+            border-radius: 0 0 clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.5rem, 1vh, 0.7rem) clamp(0.6rem, 1.2vw, 0.8rem);
+            gap: 0.2rem;
+            margin-top: clamp(6px, 0.8vh, 8px);
+        }
+
+        /* The Chinese character - carved into stone */
+        .hanzi {
+            font-size: clamp(2.1rem, 3.8vw, 3rem);
+            font-weight: 400;
+            color: var(--carved-medium);
+            line-height: 1;
+            letter-spacing: 0.02em;
+            transition: all 0.4s ease;
+            text-shadow: 
+                1px 1px 1px var(--stone-light),
+                -1px -1px 1px var(--shadow-soft);
+        }
+
+        .stone.focus .hanzi {
+            color: var(--carved-deep);
+            transform: scale(1.05);
+            text-shadow: 
+                1px 1px 2px var(--stone-light),
+                -1px -1px 1px var(--shadow-ambient);
+        }
+
+        /* The meaning - clearly readable */
+        .meaning {
+            font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+            color: var(--carved-deep);
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            opacity: 0.85;
+            transition: all 0.4s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            text-transform: lowercase;
+            max-width: 100%;
+            word-wrap: break-word;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .stone.focus .meaning {
+            color: #909088;
+            opacity: 1;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+        }
+
+        /* The note - appears below meaning in bottom section */
+        .note {
+            font-size: clamp(0.58rem, 0.72vw, 0.66rem);
+            color: var(--carved-light);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-style: italic;
+            text-align: center;
+            max-width: 100%;
+            margin-top: 0.1rem;
+        }
+
+        .stone.focus .note {
+            opacity: 0.65;
+        }
+
+        /* Translation appears beneath the verse */
+        .translation {
+            margin-top: 3vh;
+            text-align: center;
+            font-size: clamp(0.85rem, 1.1vw, 1rem);
+            color: var(--carved-light);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+            font-weight: 300;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .verse.active .translation {
+            opacity: 0.7;
+        }
+
+        /* Title - only appears initially, then fades */
+        .title {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+            animation: titleFade 4s ease-in-out forwards;
+        }
+
+        @keyframes titleFade {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .title h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--carved-medium);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .title .subtitle {
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            color: var(--carved-light);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        /* Help overlay - appears on ? press */
+        .help {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 4rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .help.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .help-content {
+            color: var(--carved-deep);
+            font-size: 0.95rem;
+            line-height: 2;
+            letter-spacing: 0.02em;
+        }
+
+        .help-key {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--stone-base);
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 0 0.2rem;
+            box-shadow: var(--stone-sunken);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Remove title after animation */
+        @keyframes removeTitle {
+            to {
+                display: none;
+            }
+        }
+
+        .title {
+            animation: titleFade 4s ease-in-out forwards, 
+                      removeTitle 0s 4s forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 3vh 3vw;
+            }
+            
+            .verse {
+                gap: 1.2rem;
+            }
+            
+            .canvas {
+                gap: 6vh;
+            }
+        }
+
+        /* Meditation mode - extra breathing room */
+        body.meditation {
+            padding: 8vh 8vw;
+        }
+
+        body.meditation .verse {
+            gap: 4vw;
+        }
+
+        /* The flower button - ink on paper */
+        .flower {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            animation: flowerAppear 1.5s ease-out 2s forwards;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes flowerAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8) rotate(-10deg);
+            }
+            to {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+        }
+
+        .flower:hover {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .flower.playing {
+            opacity: 0.5;
+            top: 3rem;
+            left: 3rem;
+            transform: translate(0, 0) scale(0.8);
+            width: 64px;
+            height: 64px;
+        }
+
+        .flower.playing:hover {
+            opacity: 0.8;
+            transform: translate(0, 0) scale(0.85);
+        }
+
+        .flower svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px var(--shadow-ambient));
+        }
+
+        .petal {
+            fill: var(--carved-medium);
+            opacity: 0.6;
+            transition: all 0.4s ease;
+            transform-origin: center;
+        }
+
+        .flower:hover .petal {
+            opacity: 0.8;
+        }
+
+        .flower.playing .petal {
+            fill: var(--carved-deep);
+            opacity: 0.9;
+            animation: petalPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes petalPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .center-circle {
+            fill: var(--carved-light);
+            transition: all 0.4s ease;
+        }
+
+        .flower.playing .center-circle {
+            fill: var(--carved-medium);
+        }
+
+        /* Playing mode - stones pulse with audio */
+        /* Subtle singing animation for center tile only */
+        .stone.position-center.singing {
+            animation: centerSinging 1.2s ease-in-out;
+        }
+
+        @keyframes centerSinging {
+            0%, 100% {
+                transform: scale(1.8) translateY(0);
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+            }
+            50% {
+                transform: scale(1.85) translateY(-3px);
+                filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
+            }
+        }
+
+        .stone.position-center.singing .stone-top {
+            box-shadow: 
+                inset -3px -3px 8px var(--stone-light),
+                inset 3px 3px 8px var(--shadow-soft),
+                0 8px 24px var(--shadow-ambient);
+        }
+
+        .stone.position-center.singing .meaning {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 
+                         0 1px 2px rgba(255, 255, 255, 0.9);
+            animation: meaningGlow 1.2s ease-in-out;
+        }
+
+        @keyframes meaningGlow {
+            0%, 100% {
+                opacity: 0.85;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+        }
+
+        /* Audio element hidden */
+        audio {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Timeline scrubber - minimalist progress bar */
+        .timeline {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top, rgba(250, 250, 252, 0.95), transparent);
+            display: flex;
+            align-items: center;
+            padding: 0 4vw;
+            z-index: 900;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .timeline.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .timeline-track {
+            position: relative;
+            width: 100%;
+            height: 3px;
+            background: rgba(208, 208, 204, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: height 0.2s ease;
+        }
+
+        .timeline-track:hover {
+            height: 5px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(to right, var(--carved-medium), var(--carved-deep));
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .timeline-handle {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            background: var(--stone-base);
+            border: 2px solid var(--carved-deep);
+            border-radius: 50%;
+            box-shadow: var(--stone-raised);
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-track:hover .timeline-handle {
+            opacity: 1;
+        }
+
+        .timeline-time {
+            position: absolute;
+            bottom: 100%;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            color: var(--carved-medium);
+            font-family: 'Courier New', monospace;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .timeline-track:hover .timeline-time {
+            opacity: 0.7;
+        }
+
+        /* Print styles - for those who want to keep it */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .help, .title, .flower {
+                display: none;
+            }
+            
+            .stone {
+                box-shadow: none;
+                border: 1px solid #e0e0e0;
+            }
+        }
+
+        /* Mobile flower position and adjustments */
+        @media (max-width: 768px) {
+            .flower {
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 48px;
+                height: 48px;
+            }
+
+            .stone {
+                width: clamp(80px, 20vw, 95px);
+            }
+
+            .stone-top {
+                height: clamp(125px, 30vw, 155px);
+                padding: clamp(1rem, 4vw, 1.5rem) clamp(0.6rem, 2vw, 0.85rem);
+            }
+
+            .stone-bottom {
+                height: clamp(36px, 9vw, 44px);
+                padding: clamp(0.45rem, 2vw, 0.6rem) clamp(0.55rem, 2vw, 0.7rem);
+                margin-top: clamp(5px, 1.5vw, 7px);
+            }
+
+            .hanzi {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+
+            .meaning {
+                font-size: clamp(0.65rem, 2.2vw, 0.75rem);
+            }
+
+            .note {
+                font-size: clamp(0.55rem, 1.8vw, 0.62rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Title appears and fades -->
+    <div class="title">
+        <h1>但願人長久</h1>
+        <div class="subtitle">Wishing Us Long Life</div>
+    </div>
+
+    <!-- The flower - ink brushed onto paper -->
+    <div class="flower" id="flower" title="Play">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Five petals forming a plum blossom -->
+            <g transform="translate(50, 50)">
+                <!-- Petal 1 - top -->
+                <ellipse class="petal" cx="0" cy="-28" rx="12" ry="18" transform="rotate(0)"/>
+                <!-- Petal 2 - top right -->
+                <ellipse class="petal" cx="23" cy="-15" rx="12" ry="18" transform="rotate(72)"/>
+                <!-- Petal 3 - bottom right -->
+                <ellipse class="petal" cx="15" cy="23" rx="12" ry="18" transform="rotate(144)"/>
+                <!-- Petal 4 - bottom left -->
+                <ellipse class="petal" cx="-15" cy="23" rx="12" ry="18" transform="rotate(216)"/>
+                <!-- Petal 5 - top left -->
+                <ellipse class="petal" cx="-23" cy="-15" rx="12" ry="18" transform="rotate(288)"/>
+                <!-- Center -->
+                <circle class="center-circle" cx="0" cy="0" r="8"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Viewport for camera control -->
+    <div id="viewport">
+        <div class="carousel-container" id="carousel-container">
+            <div class="carousel-track" id="carousel-track"></div>
+        </div>
+        <div class="translation-display" id="translation-display"></div>
+    </div>
+
+    <!-- Timeline scrubber -->
+    <div class="timeline" id="timeline">
+        <div class="timeline-track" id="timeline-track">
+            <div class="timeline-progress" id="timeline-progress"></div>
+            <div class="timeline-handle" id="timeline-handle"></div>
+            <div class="timeline-time" id="timeline-time">0:00</div>
+        </div>
+    </div>
+
+    <!-- Audio element -->
+    <audio id="audio" preload="auto">
+        <source src="./song.mp4" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Help overlay -->
+    <div class="help" id="help">
+        <div class="help-content">
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem; color: var(--carved-medium);">
+                Navigate the stones
+            </p>
+            <p><span class="help-key">←</span> <span class="help-key">→</span> move between characters</p>
+            <p><span class="help-key">↑</span> <span class="help-key">↓</span> move between lines</p>
+            <p><span class="help-key">Home</span> beginning of line</p>
+            <p><span class="help-key">End</span> end of line</p>
+            <p><span class="help-key">Tab</span> next line</p>
+            <p style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                Click the flower (top left) to play with audio
+            </p>
+            <p style="margin-top: 2rem; opacity: 0.5; text-align: center; font-size: 0.85rem;">
+                <span class="help-key">?</span> to show/hide • <span class="help-key">m</span> meditation mode
+            </p>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 開心 (Kaixin) - A meditative viewer for classical Chinese poetry
+         * 
+         * Features:
+         * - Neumorphic mahjong stone tiles with carved characters
+         * - Keyboard navigation between characters and lines
+         * - Audio playback with synchronized stone animations
+         * - Ink-painted plum blossom play button
+         * 
+         * To enable audio playback:
+         * 1. Add an audio file (mp3, wav, etc.) to your project
+         * 2. Update the <audio> element's <source> tag with the path
+         * 3. The flower button will play/pause the audio
+         * 4. Stones will pulse and rise as each character is sung
+         * 
+         * The timing data has been extracted from audio transcription
+         * and maps each character to its approximate timestamp.
+         */
+        
+        // The poem data - embedded with timing
+        const poem = {
+            metadata: {
+                title: "但願人長久",
+                poet: "蘇軾",
+                dynasty: "宋"
+            },
+            verses: [
+                {
+                    words: [
+                        {hanzi: "明月", pinyin: "míng yuè", meaning: "bright moon", note: "full moon", time: 11.4},
+                        {hanzi: "幾時", pinyin: "jǐ shí", meaning: "when", note: "what time", time: 19.7},
+                        {hanzi: "有", pinyin: "yǒu", meaning: "exist", time: 20.5},
+                        {hanzi: "把", pinyin: "bǎ", meaning: "hold", time: 21.2},
+                        {hanzi: "酒", pinyin: "jiǔ", meaning: "wine", time: 22.0},
+                        {hanzi: "問", pinyin: "wèn", meaning: "ask", time: 23.5},
+                        {hanzi: "青天", pinyin: "qīng tiān", meaning: "blue sky", note: "heavens", time: 25.0}
+                    ],
+                    translation: "When did the bright moon first appear? I lift my wine cup and ask the blue sky."
+                },
+                {
+                    words: [
+                        {hanzi: "不", pinyin: "bù", meaning: "not", time: 27.0},
+                        {hanzi: "知", pinyin: "zhī", meaning: "know", time: 27.5},
+                        {hanzi: "天上", pinyin: "tiān shàng", meaning: "heaven", time: 27.8},
+                        {hanzi: "宮闕", pinyin: "gōng què", meaning: "palace", note: "celestial halls", time: 28.3},
+                        {hanzi: "今夕", pinyin: "jīn xī", meaning: "tonight", time: 28.6},
+                        {hanzi: "是", pinyin: "shì", meaning: "is", time: 29.1},
+                        {hanzi: "何", pinyin: "hé", meaning: "what", time: 29.4},
+                        {hanzi: "年", pinyin: "nián", meaning: "year", time: 30.4}
+                    ],
+                    translation: "I wonder what year it is tonight in those celestial palaces above."
+                },
+                {
+                    words: [
+                        {hanzi: "我", pinyin: "wǒ", meaning: "I", time: 33.1},
+                        {hanzi: "欲", pinyin: "yù", meaning: "desire", time: 33.5},
+                        {hanzi: "乘", pinyin: "chéng", meaning: "ride", time: 33.9},
+                        {hanzi: "風", pinyin: "fēng", meaning: "wind", time: 34.3},
+                        {hanzi: "歸去", pinyin: "guī qù", meaning: "return", note: "go home", time: 35.0},
+                        {hanzi: "唯", pinyin: "wéi", meaning: "only", time: 36.4},
+                        {hanzi: "恐", pinyin: "kǒng", meaning: "fear", time: 37.5},
+                        {hanzi: "瓊樓", pinyin: "qióng lóu", meaning: "jade tower", time: 38.6},
+                        {hanzi: "玉宇", pinyin: "yù yǔ", meaning: "jade palace", time: 39.3}
+                    ],
+                    translation: "I wish to ride the wind and return there, yet I fear those jade towers and crystal palaces."
+                },
+                {
+                    words: [
+                        {hanzi: "高處", pinyin: "gāo chù", meaning: "heights", time: 48.0},
+                        {hanzi: "不勝", pinyin: "bù shèng", meaning: "unbearable", time: 49.5},
+                        {hanzi: "寒", pinyin: "hán", meaning: "cold", time: 50.5},
+                        {hanzi: "起", pinyin: "qǐ", meaning: "rise", time: 58.0},
+                        {hanzi: "舞", pinyin: "wǔ", meaning: "dance", time: 59.0},
+                        {hanzi: "弄", pinyin: "nòng", meaning: "play with", time: 60.0},
+                        {hanzi: "清影", pinyin: "qīng yǐng", meaning: "clear shadow", note: "moonlit", time: 61.0}
+                    ],
+                    translation: "The heights are unbearably cold. I rise and dance, playing with my clear shadow."
+                },
+                {
+                    words: [
+                        {hanzi: "何", pinyin: "hé", meaning: "how", time: 70.5},
+                        {hanzi: "似", pinyin: "sì", meaning: "compare", time: 71.5},
+                        {hanzi: "在", pinyin: "zài", meaning: "at", time: 74.2},
+                        {hanzi: "人間", pinyin: "rén jiān", meaning: "mortal world", time: 75.0}
+                    ],
+                    translation: "How can it compare to being in the mortal world?"
+                },
+                {
+                    words: [
+                        {hanzi: "轉", pinyin: "zhuǎn", meaning: "turn", time: 145.0},
+                        {hanzi: "朱閣", pinyin: "zhū gé", meaning: "red tower", time: 147.0},
+                        {hanzi: "低", pinyin: "dī", meaning: "descend", time: 150.0},
+                        {hanzi: "綺戶", pinyin: "qǐ hù", meaning: "window", note: "ornate", time: 152.0},
+                        {hanzi: "照", pinyin: "zhào", meaning: "shine", time: 155.0},
+                        {hanzi: "無", pinyin: "wú", meaning: "without", time: 156.5},
+                        {hanzi: "眠", pinyin: "mián", meaning: "sleep", time: 157.5}
+                    ],
+                    translation: "The moon circles the red tower, descends past the ornate windows, shining on the sleepless."
+                },
+                {
+                    words: [
+                        {hanzi: "不應", pinyin: "bù yīng", meaning: "should not", time: 185.7},
+                        {hanzi: "有", pinyin: "yǒu", meaning: "have", time: 189.3},
+                        {hanzi: "恨", pinyin: "hèn", meaning: "regret", time: 189.9},
+                        {hanzi: "何", pinyin: "hé", meaning: "what", time: 190.7},
+                        {hanzi: "事", pinyin: "shì", meaning: "matter", time: 191.4},
+                        {hanzi: "長", pinyin: "cháng", meaning: "always", time: 191.7},
+                        {hanzi: "向", pinyin: "xiàng", meaning: "toward", time: 192.1},
+                        {hanzi: "別時", pinyin: "bié shí", meaning: "parting", time: 192.5},
+                        {hanzi: "圓", pinyin: "yuán", meaning: "full", note: "full moon", time: 193.0}
+                    ],
+                    translation: "The moon should hold no grudge—why is it always full when people are apart?"
+                },
+                {
+                    words: [
+                        {hanzi: "人", pinyin: "rén", meaning: "people", time: 209.4},
+                        {hanzi: "有", pinyin: "yǒu", meaning: "have", time: 210.4},
+                        {hanzi: "悲", pinyin: "bēi", meaning: "sorrow", time: 211.0},
+                        {hanzi: "歡", pinyin: "huān", meaning: "joy", time: 211.3},
+                        {hanzi: "離", pinyin: "lí", meaning: "separation", time: 212.0},
+                        {hanzi: "合", pinyin: "hé", meaning: "reunion", time: 212.6},
+                        {hanzi: "月", pinyin: "yuè", meaning: "moon", time: 213.5},
+                        {hanzi: "有", pinyin: "yǒu", meaning: "have", time: 216.0},
+                        {hanzi: "陰", pinyin: "yīn", meaning: "dark", time: 216.3},
+                        {hanzi: "晴", pinyin: "qíng", meaning: "clear", time: 216.9},
+                        {hanzi: "圓", pinyin: "yuán", meaning: "full", time: 217.4},
+                        {hanzi: "缺", pinyin: "quē", meaning: "waning", time: 217.9}
+                    ],
+                    translation: "People experience sorrow and joy, separation and reunion; the moon has dark phases and bright, waxing and waning—"
+                },
+                {
+                    words: [
+                        {hanzi: "此", pinyin: "cǐ", meaning: "this", time: 218.4},
+                        {hanzi: "事", pinyin: "shì", meaning: "matter", time: 220.0},
+                        {hanzi: "古", pinyin: "gǔ", meaning: "ancient", time: 221.3},
+                        {hanzi: "難", pinyin: "nán", meaning: "difficult", time: 223.0},
+                        {hanzi: "全", pinyin: "quán", meaning: "complete", time: 224.2}
+                    ],
+                    translation: "Such matters have never been perfect since ancient times."
+                },
+                {
+                    words: [
+                        {hanzi: "但", pinyin: "dàn", meaning: "only", time: 225.8},
+                        {hanzi: "願", pinyin: "yuàn", meaning: "wish", time: 226.7},
+                        {hanzi: "人", pinyin: "rén", meaning: "people", time: 227.4},
+                        {hanzi: "長久", pinyin: "cháng jiǔ", meaning: "long life", time: 228.0},
+                        {hanzi: "千里", pinyin: "qiān lǐ", meaning: "thousand miles", note: "far apart", time: 231.8},
+                        {hanzi: "共", pinyin: "gòng", meaning: "share", time: 232.8},
+                        {hanzi: "嬋娟", pinyin: "chán juān", meaning: "moon", note: "beautiful", time: 233.5}
+                    ],
+                    translation: "I only wish that we may live long lives, and though a thousand miles apart, share the beauty of this moon together."
+                }
+            ]
+        };
+
+        // Carousel state - single flat array of all stones
+        let carouselState = {
+            allStones: [],           // Flattened array of all stone data with timing
+            currentIndex: -1,        // Index of center stone
+            totalStones: 0
+        };
+
+        // Playback state
+        let playbackState = {
+            isPlaying: false,
+            animationFrame: null,
+            duration: 0,
+            currentTranslation: ""   // Current verse translation
+        };
+
+        // Initialize carousel - flatten all stones into one array
+        function initCarousel() {
+            carouselState.allStones = [];
+            
+            // Flatten all verses into single array
+            poem.verses.forEach((verse, verseIdx) => {
+                verse.words.forEach((word, wordIdx) => {
+                    if (word.time !== undefined) {
+                        carouselState.allStones.push({
+                            hanzi: word.hanzi,
+                            pinyin: word.pinyin,
+                            meaning: word.meaning,
+                            note: word.note,
+                            time: word.time,
+                            duration: word.duration || 1.5,
+                            translation: verse.translation,
+                            verseIdx: verseIdx,
+                            wordIdx: wordIdx
+                        });
+                    }
+                });
+            });
+            
+            // Sort by time to ensure correct order
+            carouselState.allStones.sort((a, b) => a.time - b.time);
+            carouselState.totalStones = carouselState.allStones.length;
+            
+            console.log(`Initialized carousel with ${carouselState.totalStones} stones`);
+        }
+
+        // Create a stone DOM element
+        function createStoneElement(stoneData) {
+            const stone = document.createElement('div');
+            stone.className = 'stone';
+            
+            // Top section - the character
+            const stoneTop = document.createElement('div');
+            stoneTop.className = 'stone-top';
+            
+            const hanzi = document.createElement('div');
+            hanzi.className = 'hanzi';
+            hanzi.textContent = stoneData.hanzi;
+            stoneTop.appendChild(hanzi);
+            
+            stone.appendChild(stoneTop);
+            
+            // Bottom section - pinyin/meaning
+            const stoneBottom = document.createElement('div');
+            stoneBottom.className = 'stone-bottom';
+            
+            const meaning = document.createElement('div');
+            meaning.className = 'meaning';
+            meaning.textContent = stoneData.pinyin || stoneData.meaning;
+            meaning.title = stoneData.meaning; // Tooltip shows English
+            stoneBottom.appendChild(meaning);
+            
+            if (stoneData.note) {
+                const note = document.createElement('div');
+                note.className = 'note';
+                note.textContent = stoneData.note;
+                stoneBottom.appendChild(note);
+            }
+            
+            stone.appendChild(stoneBottom);
+            
+            return stone;
+        }
+
+        // Update carousel to show 5 tiles centered on given index
+        function updateCarousel(centerIndex) {
+            const track = document.getElementById('carousel-track');
+            const translationDisplay = document.getElementById('translation-display');
+            
+            track.innerHTML = '';
+            
+            // Determine which 5 stones to show
+            const startIndex = Math.max(0, centerIndex - 2);
+            const endIndex = Math.min(carouselState.totalStones, centerIndex + 3);
+            
+            // Render stones
+            for (let i = startIndex; i < endIndex; i++) {
+                const stoneData = carouselState.allStones[i];
+                const stone = createStoneElement(stoneData);
+                
+                // Calculate position offset from center
+                const offset = i - centerIndex;
+                
+                // Apply position class based on offset and edge cases
+                if (offset === 0) {
+                    // Center tile
+                    // Special handling for first/last tiles
+                    if (centerIndex === 0) {
+                        stone.classList.add('position-first');
+                    } else if (centerIndex === 1) {
+                        stone.classList.add('position-second');
+                    } else if (centerIndex === carouselState.totalStones - 2) {
+                        stone.classList.add('position-penultimate');
+                    } else if (centerIndex === carouselState.totalStones - 1) {
+                        stone.classList.add('position-last');
+                    } else {
+                        stone.classList.add('position-center');
+                    }
+                    
+                    // Show translation for center tile
+                    playbackState.currentTranslation = stoneData.translation;
+                    translationDisplay.textContent = stoneData.translation;
+                    translationDisplay.classList.add('visible');
+                } else if (Math.abs(offset) === 1) {
+                    stone.classList.add('position-adjacent');
+                } else {
+                    stone.classList.add('position-edge');
+                }
+                
+                track.appendChild(stone);
+            }
+            
+            carouselState.currentIndex = centerIndex;
+        }
+
+        // Playback control
+        function togglePlayback() {
+            const audio = document.getElementById('audio');
+            const flower = document.getElementById('flower');
+            const timeline = document.getElementById('timeline');
+            const carouselContainer = document.getElementById('carousel-container');
+            
+            // Check if audio has a valid source
+            if (!audio.currentSrc && !audio.src) {
+                console.log('No audio source provided. Add your audio file to enable playback.');
+                return;
+            }
+            
+            playbackState.isPlaying = !playbackState.isPlaying;
+            
+            if (playbackState.isPlaying) {
+                // Reveal the carousel
+                carouselContainer.classList.add('active');
+                
+                // Show first stone immediately
+                setTimeout(() => {
+                    updateCarousel(0);
+                    // Add singing animation to first stone
+                    const centerStone = document.querySelector('.stone.position-first, .stone.position-center');
+                    if (centerStone) {
+                        centerStone.classList.add('singing');
+                        setTimeout(() => centerStone.classList.remove('singing'), 1200);
+                    }
+                }, 100);
+                
+                audio.play().catch(err => {
+                    console.error('Error playing audio:', err);
+                    playbackState.isPlaying = false;
+                    return;
+                });
+                
+                flower.classList.add('playing');
+                timeline.classList.add('visible');
+                startTimeTracking();
+            } else {
+                audio.pause();
+                flower.classList.remove('playing');
+                stopTimeTracking();
+            }
+        }
+
+        // Track audio time and update carousel with binary search
+        function startTimeTracking() {
+            const audio = document.getElementById('audio');
+            const timelineProgress = document.getElementById('timeline-progress');
+            const timelineHandle = document.getElementById('timeline-handle');
+            
+            // Wait for audio metadata to load
+            if (!audio.duration || isNaN(audio.duration)) {
+                audio.addEventListener('loadedmetadata', () => {
+                    playbackState.duration = audio.duration;
+                });
+                playbackState.duration = 258; // fallback
+            } else {
+                playbackState.duration = audio.duration;
+            }
+            
+            function update() {
+                if (!playbackState.isPlaying) return;
+                
+                const currentTime = audio.currentTime;
+                const duration = playbackState.duration;
+                
+                // Update timeline
+                if (duration > 0) {
+                    const progress = Math.min(100, (currentTime / duration) * 100);
+                    timelineProgress.style.width = `${progress}%`;
+                    timelineHandle.style.left = `${progress}%`;
+                }
+                
+                // Binary search for active stone
+                let left = 0;
+                let right = carouselState.totalStones - 1;
+                let activeIndex = 0;
+                
+                while (left <= right) {
+                    const mid = Math.floor((left + right) / 2);
+                    const stone = carouselState.allStones[mid];
+                    const nextStone = carouselState.allStones[mid + 1];
+                    
+                    if (currentTime >= stone.time && 
+                        (!nextStone || currentTime < nextStone.time)) {
+                        activeIndex = mid;
+                        break;
+                    } else if (currentTime < stone.time) {
+                        right = mid - 1;
+                    } else {
+                        left = mid + 1;
+                    }
+                }
+                
+                // Update carousel if stone changed
+                if (activeIndex !== carouselState.currentIndex) {
+                    updateCarousel(activeIndex);
+                    
+                    // Add singing animation to center stone
+                    const centerStone = document.querySelector('.stone.position-center, .stone.position-first, .stone.position-second, .stone.position-penultimate, .stone.position-last');
+                    if (centerStone) {
+                        centerStone.classList.add('singing');
+                        setTimeout(() => {
+                            centerStone.classList.remove('singing');
+                        }, 1200); // Match CSS animation duration
+                    }
+                }
+                
+                playbackState.animationFrame = requestAnimationFrame(update);
+            }
+            
+            update();
+        }
+
+        function stopTimeTracking() {
+            if (playbackState.animationFrame) {
+                cancelAnimationFrame(playbackState.animationFrame);
+                playbackState.animationFrame = null;
+            }
+            
+            // Remove all singing classes
+            document.querySelectorAll('.stone.singing').forEach(s => {
+                s.classList.remove('singing');
+            });
+            
+            // Reset carousel state
+            carouselState.currentIndex = -1;
+        }
+
+        // Handle audio end
+        document.getElementById('audio').addEventListener('ended', () => {
+            playbackState.isPlaying = false;
+            document.getElementById('flower').classList.remove('playing');
+            stopTimeTracking();
+        });
+
+        // Flower click handler
+        document.getElementById('flower').addEventListener('click', () => {
+            togglePlayback();
+        });
+
+        // Timeline scrubber interaction
+        const timelineTrack = document.getElementById('timeline-track');
+        const timelineTime = document.getElementById('timeline-time');
+        let isDragging = false;
+
+        function seekToPosition(x) {
+            const audio = document.getElementById('audio');
+            const rect = timelineTrack.getBoundingClientRect();
+            const position = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+            const time = position * playbackState.duration;
+            
+            // Set audio time
+            audio.currentTime = time;
+            
+            // Update timeline immediately
+            const progress = position * 100;
+            document.getElementById('timeline-progress').style.width = `${progress}%`;
+            document.getElementById('timeline-handle').style.left = `${progress}%`;
+            
+            // Binary search for stone at this time
+            let left = 0;
+            let right = carouselState.totalStones - 1;
+            let targetIndex = 0;
+            
+            while (left <= right) {
+                const mid = Math.floor((left + right) / 2);
+                const stone = carouselState.allStones[mid];
+                const nextStone = carouselState.allStones[mid + 1];
+                
+                if (time >= stone.time && 
+                    (!nextStone || time < nextStone.time)) {
+                    targetIndex = mid;
+                    break;
+                } else if (time < stone.time) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            
+            // Jump carousel to this stone
+            updateCarousel(targetIndex);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        timelineTrack.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            seekToPosition(e.clientX);
+        });
+
+        timelineTrack.addEventListener('mousemove', (e) => {
+            const rect = timelineTrack.getBoundingClientRect();
+            const position = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            const time = position * playbackState.duration;
+            
+            timelineTime.textContent = formatTime(time);
+            timelineTime.style.left = `${position * 100}%`;
+            
+            if (isDragging) {
+                seekToPosition(e.clientX);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        timelineTrack.addEventListener('click', (e) => {
+            seekToPosition(e.clientX);
+        });
+
+        // Help overlay
+        let helpVisible = false;
+        function toggleHelp() {
+            helpVisible = !helpVisible;
+            const help = document.getElementById('help');
+            if (helpVisible) {
+                help.classList.add('show');
+            } else {
+                help.classList.remove('show');
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // Help toggle
+            if (e.key === '?' || e.key === '/') {
+                e.preventDefault();
+                toggleHelp();
+                return;
+            }
+
+            // Close help on any other key
+            if (helpVisible) {
+                toggleHelp();
+            }
+
+            switch(e.key) {
+                case 'Escape':
+                    e.preventDefault();
+                    if (helpVisible) {
+                        toggleHelp();
+                    }
+                    break;
+                // Carousel auto-follows audio, no manual navigation needed
+            }
+        });
+
+        // Close help when clicking outside
+        document.getElementById('help').addEventListener('click', (e) => {
+            if (e.target.id === 'help') {
+                toggleHelp();
+            }
+        });
+
+        // Initialize carousel
+        initCarousel();
+
+        // Optional: meditation mode toggle with 'm' key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'm' || e.key === 'M') {
+                document.body.classList.toggle('meditation');
+            }
+        });
+    </script>
+</body>
+</html>
+

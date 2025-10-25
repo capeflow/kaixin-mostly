@@ -1,0 +1,129 @@
+/* Mahjong Stone Tiles */
+
+.stone {
+    position: relative;
+    width: clamp(90px, 8vw, 105px);
+    height: auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    user-select: none;
+}
+
+/* Stone top section - character area */
+.stone-top {
+    background: var(--stone-base);
+    border-radius: 6px 6px 0 0;
+    padding: clamp(0.8rem, 1.5vw, 1.2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(75px, 10vw, 90px);
+    box-shadow: var(--stone-sunken);
+    transition: all var(--transition-medium);
+    position: relative;
+    z-index: 1;
+}
+
+/* Stone bottom section - pinyin/meaning */
+.stone-bottom, .stone-band {
+    background: linear-gradient(180deg, var(--stone-dark) 0%, var(--stone-base) 100%);
+    border-radius: 0 0 6px 6px;
+    padding: clamp(0.5rem, 1vw, 0.7rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(35px, 5vw, 40px);
+    box-shadow: inset 0 2px 4px var(--shadow-soft);
+    transition: all var(--transition-medium);
+}
+
+/* Optional middle section for future use */
+.stone-mid { display: flex; align-items: center; justify-content: center; }
+
+/* Soft ambient wash behind the active verse */
+.verse.active::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%; transform: translateY(-50%);
+    margin: auto;
+    width: 100%;
+    height: 240px;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(255,245,200,0.18), rgba(255,255,255,0) 60%);
+    filter: blur(18px);
+    z-index: 0;
+}
+
+/* Verse container */
+.verse-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* hidden until intro completes */
+    pointer-events: none;
+    transition: opacity 1.5s ease-out;
+    overflow: hidden;
+    padding: 10vh 10vw;
+}
+
+.verse-container.active { opacity: 1; pointer-events: auto; }
+
+/* Individual verse - stacked rows */
+.verse {
+    display: none; /* hidden by default to avoid accidental overlap */
+    flex-direction: column; /* stack rows vertically */
+    gap: clamp(0.8rem, 2vh, 1.4rem); /* vertical space between rows */
+    justify-content: center;
+    align-items: center;
+    padding: 4vh 5vw;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+    width: 100%;
+    position: relative;
+}
+
+.verse.active {
+    display: flex; /* show only the active verse */
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* A verse-row wraps stones to multiple centered rows */
+.verse-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: clamp(2rem, 4vw, 4rem);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Translation below verse - separate container */
+.translation-display {
+    position: fixed;
+    bottom: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 2rem;
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.translation-display.visible {
+    opacity: 0.9;
+}
+

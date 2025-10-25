@@ -1,0 +1,1132 @@
+{
+  "metadata": {
+    "title": "但願人長久",
+    "titleRomanized": "Dàn Yuàn Rén Cháng Jiǔ",
+    "titleEnglish": "Wishing Us Long Life",
+    "artist": "鄧麗君",
+    "artistRomanized": "Teresa Teng",
+    "poet": "蘇軾",
+    "dynasty": "宋",
+    "audioFile": "./song.mp4"
+  },
+  "verses": [
+    {
+      "characters": [
+        {
+          "char": "明",
+          "pinyin": "míng",
+          "meaning": "bright",
+          "time": 11.44
+        },
+        {
+          "char": "月",
+          "pinyin": "yuè",
+          "meaning": "moon",
+          "time": 12.0
+        },
+        {
+          "char": "幾",
+          "pinyin": "jǐ",
+          "meaning": "how many",
+          "time": 12.52
+        },
+        {
+          "char": "時",
+          "pinyin": "shí",
+          "meaning": "time",
+          "time": 13.1
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 13.7
+        },
+        {
+          "char": "把",
+          "pinyin": "bǎ",
+          "meaning": "hold",
+          "time": 16.35
+        },
+        {
+          "char": "酒",
+          "pinyin": "jiǔ",
+          "meaning": "wine",
+          "time": 17.2
+        },
+        {
+          "char": "問",
+          "pinyin": "wèn",
+          "meaning": "ask",
+          "time": 18.0
+        },
+        {
+          "char": "青",
+          "pinyin": "qīng",
+          "meaning": "blue",
+          "time": 18.8
+        },
+        {
+          "char": "天",
+          "pinyin": "tiān",
+          "meaning": "sky",
+          "time": 19.6
+        }
+      ],
+      "translation": "When did the bright moon first appear? I lift my wine cup and ask the blue sky.",
+      "breakAfter": 5
+    },
+    {
+      "characters": [
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "meaning": "not",
+          "time": 22.0
+        },
+        {
+          "char": "知",
+          "pinyin": "zhī",
+          "meaning": "know",
+          "time": 22.65
+        },
+        {
+          "char": "天",
+          "pinyin": "tiān",
+          "meaning": "heaven",
+          "time": 23.1
+        },
+        {
+          "char": "上",
+          "pinyin": "shàng",
+          "meaning": "above",
+          "time": 24.05
+        },
+        {
+          "char": "宮",
+          "pinyin": "gōng",
+          "meaning": "palace",
+          "time": 25.1
+        },
+        {
+          "char": "闕",
+          "pinyin": "què",
+          "meaning": "halls",
+          "time": 26.4
+        },
+        {
+          "char": "今",
+          "pinyin": "jīn",
+          "meaning": "this",
+          "time": 27.8
+        },
+        {
+          "char": "夕",
+          "pinyin": "xī",
+          "meaning": "evening",
+          "time": 28.4
+        },
+        {
+          "char": "是",
+          "pinyin": "shì",
+          "meaning": "is",
+          "time": 29.0
+        },
+        {
+          "char": "何",
+          "pinyin": "hé",
+          "meaning": "what",
+          "time": 29.8
+        },
+        {
+          "char": "年",
+          "pinyin": "nián",
+          "meaning": "year",
+          "time": 30.41
+        }
+      ],
+      "translation": "I wonder what year it is tonight in those celestial palaces above.",
+      "breakAfter": 5
+    },
+    {
+      "characters": [
+        {
+          "char": "我",
+          "pinyin": "wǒ",
+          "meaning": "I",
+          "time": 32.8
+        },
+        {
+          "char": "欲",
+          "pinyin": "yù",
+          "meaning": "desire",
+          "time": 33.29
+        },
+        {
+          "char": "乘",
+          "pinyin": "chéng",
+          "meaning": "ride",
+          "time": 33.65
+        },
+        {
+          "char": "風",
+          "pinyin": "fēng",
+          "meaning": "wind",
+          "time": 34.1
+        },
+        {
+          "char": "歸",
+          "pinyin": "guī",
+          "meaning": "return",
+          "time": 34.69
+        },
+        {
+          "char": "去",
+          "pinyin": "qù",
+          "meaning": "go",
+          "time": 35.51
+        },
+        {
+          "char": "唯",
+          "pinyin": "wéi",
+          "meaning": "only",
+          "time": 38.37
+        },
+        {
+          "char": "恐",
+          "pinyin": "kǒng",
+          "meaning": "fear",
+          "time": 38.9
+        },
+        {
+          "char": "瓊",
+          "pinyin": "qióng",
+          "meaning": "jade",
+          "time": 39.41
+        },
+        {
+          "char": "樓",
+          "pinyin": "lóu",
+          "meaning": "tower",
+          "time": 40.01
+        },
+        {
+          "char": "玉",
+          "pinyin": "yù",
+          "meaning": "jade",
+          "time": 40.43
+        },
+        {
+          "char": "宇",
+          "pinyin": "yǔ",
+          "meaning": "palace",
+          "time": 41.01
+        }
+      ],
+      "translation": "I wish to ride the wind and return there, yet I fear those jade towers and crystal palaces.",
+      "breakAfter": 6
+    },
+    {
+      "characters": [
+        {
+          "char": "高",
+          "pinyin": "gāo",
+          "meaning": "high",
+          "time": 44.0
+        },
+        {
+          "char": "處",
+          "pinyin": "chù",
+          "meaning": "place",
+          "time": 44.7
+        },
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "meaning": "not",
+          "time": 45.2
+        },
+        {
+          "char": "勝",
+          "pinyin": "shèng",
+          "meaning": "endure",
+          "time": 45.9
+        },
+        {
+          "char": "寒",
+          "pinyin": "hán",
+          "meaning": "cold",
+          "time": 46.5
+        },
+        {
+          "char": "起",
+          "pinyin": "qǐ",
+          "meaning": "rise",
+          "time": 48.5
+        },
+        {
+          "char": "舞",
+          "pinyin": "wǔ",
+          "meaning": "dance",
+          "time": 50.0
+        },
+        {
+          "char": "弄",
+          "pinyin": "nòng",
+          "meaning": "play",
+          "time": 50.4
+        },
+        {
+          "char": "清",
+          "pinyin": "qīng",
+          "meaning": "clear",
+          "time": 51.3
+        },
+        {
+          "char": "影",
+          "pinyin": "yǐng",
+          "meaning": "shadow",
+          "time": 52.0
+        }
+      ],
+      "translation": "The heights are unbearably cold. I rise and dance, playing with my clear shadow.",
+      "breakAfter": 4
+    },
+    {
+      "characters": [
+        {
+          "char": "何",
+          "pinyin": "hé",
+          "meaning": "how",
+          "time": 54.5
+        },
+        {
+          "char": "似",
+          "pinyin": "sì",
+          "meaning": "compare",
+          "time": 55.3
+        },
+        {
+          "char": "在",
+          "pinyin": "zài",
+          "meaning": "at",
+          "time": 56.1
+        },
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 56.6
+        },
+        {
+          "char": "間",
+          "pinyin": "jiān",
+          "meaning": "world",
+          "time": 57.3
+        }
+      ],
+      "translation": "How can it compare to being in the mortal world?"
+    },
+    {
+      "characters": [
+        {
+          "char": "轉",
+          "pinyin": "zhuǎn",
+          "meaning": "turn",
+          "time": 61.0
+        },
+        {
+          "char": "朱",
+          "pinyin": "zhū",
+          "meaning": "red",
+          "time": 64.3
+        },
+        {
+          "char": "閣",
+          "pinyin": "gé",
+          "meaning": "tower",
+          "time": 65.0
+        },
+        {
+          "char": "低",
+          "pinyin": "dī",
+          "meaning": "descend",
+          "time": 65.9
+        },
+        {
+          "char": "綺",
+          "pinyin": "qǐ",
+          "meaning": "ornate",
+          "time": 66.5
+        },
+        {
+          "char": "戶",
+          "pinyin": "hù",
+          "meaning": "window",
+          "time": 67.0
+        },
+        {
+          "char": "照",
+          "pinyin": "zhào",
+          "meaning": "shine",
+          "time": 68.3
+        },
+        {
+          "char": "無",
+          "pinyin": "wú",
+          "meaning": "without",
+          "time": 70.09
+        },
+        {
+          "char": "眠",
+          "pinyin": "mián",
+          "meaning": "sleep",
+          "time": 71.1
+        }
+      ],
+      "translation": "The moon circles the red tower, descends past the ornate windows, shining on the sleepless.",
+      "breakAfter": 5
+    },
+    {
+      "characters": [
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "meaning": "not",
+          "time": 73.73
+        },
+        {
+          "char": "應",
+          "pinyin": "yīng",
+          "meaning": "should",
+          "time": 74.23
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 75.13
+        },
+        {
+          "char": "恨",
+          "pinyin": "hèn",
+          "meaning": "regret",
+          "time": 75.99
+        },
+        {
+          "char": "何",
+          "pinyin": "hé",
+          "meaning": "what",
+          "time": 76.59
+        },
+        {
+          "char": "事",
+          "pinyin": "shì",
+          "meaning": "matter",
+          "time": 77.1
+        },
+        {
+          "char": "長",
+          "pinyin": "cháng",
+          "meaning": "always",
+          "time": 77.43
+        },
+        {
+          "char": "向",
+          "pinyin": "xiàng",
+          "meaning": "toward",
+          "time": 78.03
+        },
+        {
+          "char": "別",
+          "pinyin": "bié",
+          "meaning": "part",
+          "time": 79.1
+        },
+        {
+          "char": "時",
+          "pinyin": "shí",
+          "meaning": "time",
+          "time": 80.7
+        },
+        {
+          "char": "圓",
+          "pinyin": "yuán",
+          "meaning": "full",
+          "time": 82.1
+        }
+      ],
+      "translation": "The moon should hold no grudge—why is it always full when people are apart?",
+      "breakAfter": 3
+    },
+    {
+      "characters": [
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 86.39
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 87.37
+        },
+        {
+          "char": "悲",
+          "pinyin": "bēi",
+          "meaning": "sorrow",
+          "time": 88.0
+        },
+        {
+          "char": "歡",
+          "pinyin": "huān",
+          "meaning": "joy",
+          "time": 88.31
+        },
+        {
+          "char": "離",
+          "pinyin": "lí",
+          "meaning": "separation",
+          "time": 89.03
+        },
+        {
+          "char": "合",
+          "pinyin": "hé",
+          "meaning": "reunion",
+          "time": 90.0
+        },
+        {
+          "char": "月",
+          "pinyin": "yuè",
+          "meaning": "moon",
+          "time": 92.4
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 93.34
+        },
+        {
+          "char": "陰",
+          "pinyin": "yīn",
+          "meaning": "dark",
+          "time": 93.8
+        },
+        {
+          "char": "晴",
+          "pinyin": "qíng",
+          "meaning": "clear",
+          "time": 94.38
+        },
+        {
+          "char": "圓",
+          "pinyin": "yuán",
+          "meaning": "full",
+          "time": 94.93
+        },
+        {
+          "char": "缺",
+          "pinyin": "quē",
+          "meaning": "waning",
+          "time": 95.42
+        }
+      ],
+      "translation": "People experience sorrow and joy, separation and reunion; the moon has dark phases and bright, waxing and waning—",
+      "breakAfter": 6
+    },
+    {
+      "characters": [
+        {
+          "char": "此",
+          "pinyin": "cǐ",
+          "meaning": "this",
+          "time": 97.4
+        },
+        {
+          "char": "事",
+          "pinyin": "shì",
+          "meaning": "matter",
+          "time": 98.28
+        },
+        {
+          "char": "古",
+          "pinyin": "gǔ",
+          "meaning": "ancient",
+          "time": 99.68
+        },
+        {
+          "char": "難",
+          "pinyin": "nán",
+          "meaning": "difficult",
+          "time": 100.04
+        },
+        {
+          "char": "全",
+          "pinyin": "quán",
+          "meaning": "complete",
+          "time": 101.0
+        }
+      ],
+      "translation": "Such matters have never been perfect since ancient times."
+    },
+    {
+      "characters": [
+        {
+          "char": "但",
+          "pinyin": "dàn",
+          "meaning": "only",
+          "time": 103.3
+        },
+        {
+          "char": "願",
+          "pinyin": "yuàn",
+          "meaning": "wish",
+          "time": 104.22
+        },
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 105.12
+        },
+        {
+          "char": "長",
+          "pinyin": "cháng",
+          "meaning": "long",
+          "time": 105.67
+        },
+        {
+          "char": "久",
+          "pinyin": "jiǔ",
+          "meaning": "lasting",
+          "time": 106.4
+        },
+        {
+          "char": "千",
+          "pinyin": "qiān",
+          "meaning": "thousand",
+          "time": 109.05
+        },
+        {
+          "char": "里",
+          "pinyin": "lǐ",
+          "meaning": "miles",
+          "time": 109.79
+        },
+        {
+          "char": "共",
+          "pinyin": "gòng",
+          "meaning": "share",
+          "time": 110.79
+        },
+        {
+          "char": "嬋",
+          "pinyin": "chán",
+          "meaning": "beautiful",
+          "time": 111.18
+        },
+        {
+          "char": "娟",
+          "pinyin": "juān",
+          "meaning": "moon",
+          "time": 111.78
+        }
+      ],
+      "translation": "I only wish that we may live long lives, and though a thousand miles apart, share the beauty of this moon together.",
+      "breakAfter": 5
+    },
+    {
+      "characters": [
+        {
+          "char": "我",
+          "pinyin": "wǒ",
+          "meaning": "I",
+          "time": 147.2
+        },
+        {
+          "char": "欲",
+          "pinyin": "yù",
+          "meaning": "desire",
+          "time": 147.69
+        },
+        {
+          "char": "乘",
+          "pinyin": "chéng",
+          "meaning": "ride",
+          "time": 148.05
+        },
+        {
+          "char": "風",
+          "pinyin": "fēng",
+          "meaning": "wind",
+          "time": 148.5
+        },
+        {
+          "char": "歸",
+          "pinyin": "guī",
+          "meaning": "return",
+          "time": 149.09
+        },
+        {
+          "char": "去",
+          "pinyin": "qù",
+          "meaning": "go",
+          "time": 149.91
+        },
+        {
+          "char": "唯",
+          "pinyin": "wéi",
+          "meaning": "only",
+          "time": 152.77
+        },
+        {
+          "char": "恐",
+          "pinyin": "kǒng",
+          "meaning": "fear",
+          "time": 153.3
+        },
+        {
+          "char": "瓊",
+          "pinyin": "qióng",
+          "meaning": "jade",
+          "time": 153.81
+        },
+        {
+          "char": "樓",
+          "pinyin": "lóu",
+          "meaning": "tower",
+          "time": 154.41
+        },
+        {
+          "char": "玉",
+          "pinyin": "yù",
+          "meaning": "jade",
+          "time": 154.83
+        },
+        {
+          "char": "宇",
+          "pinyin": "yǔ",
+          "meaning": "palace",
+          "time": 155.41
+        }
+      ],
+      "translation": "I wish to ride the wind and return there, yet I fear those jade towers and crystal palaces.",
+      "breakAfter": 6
+    },
+    {
+      "characters": [
+        {
+          "char": "高",
+          "pinyin": "gāo",
+          "meaning": "high",
+          "time": 158.4
+        },
+        {
+          "char": "處",
+          "pinyin": "chù",
+          "meaning": "place",
+          "time": 159.1
+        },
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "meaning": "not",
+          "time": 159.6
+        },
+        {
+          "char": "勝",
+          "pinyin": "shèng",
+          "meaning": "endure",
+          "time": 160.3
+        },
+        {
+          "char": "寒",
+          "pinyin": "hán",
+          "meaning": "cold",
+          "time": 160.9
+        },
+        {
+          "char": "起",
+          "pinyin": "qǐ",
+          "meaning": "rise",
+          "time": 162.9
+        },
+        {
+          "char": "舞",
+          "pinyin": "wǔ",
+          "meaning": "dance",
+          "time": 164.4
+        },
+        {
+          "char": "弄",
+          "pinyin": "nòng",
+          "meaning": "play",
+          "time": 164.8
+        },
+        {
+          "char": "清",
+          "pinyin": "qīng",
+          "meaning": "clear",
+          "time": 165.7
+        },
+        {
+          "char": "影",
+          "pinyin": "yǐng",
+          "meaning": "shadow",
+          "time": 166.4
+        }
+      ],
+      "translation": "The heights are unbearably cold. I rise and dance, playing with my clear shadow.",
+      "breakAfter": 4
+    },
+    {
+      "characters": [
+        {
+          "char": "何",
+          "pinyin": "hé",
+          "meaning": "how",
+          "time": 168.9
+        },
+        {
+          "char": "似",
+          "pinyin": "sì",
+          "meaning": "compare",
+          "time": 169.7
+        },
+        {
+          "char": "在",
+          "pinyin": "zài",
+          "meaning": "at",
+          "time": 170.5
+        },
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 171.0
+        },
+        {
+          "char": "間",
+          "pinyin": "jiān",
+          "meaning": "world",
+          "time": 171.7
+        }
+      ],
+      "translation": "How can it compare to being in the mortal world?"
+    },
+    {
+      "characters": [
+        {
+          "char": "轉",
+          "pinyin": "zhuǎn",
+          "meaning": "turn",
+          "time": 175.4
+        },
+        {
+          "char": "朱",
+          "pinyin": "zhū",
+          "meaning": "red",
+          "time": 178.7
+        },
+        {
+          "char": "閣",
+          "pinyin": "gé",
+          "meaning": "tower",
+          "time": 179.4
+        },
+        {
+          "char": "低",
+          "pinyin": "dī",
+          "meaning": "descend",
+          "time": 180.3
+        },
+        {
+          "char": "綺",
+          "pinyin": "qǐ",
+          "meaning": "ornate",
+          "time": 180.9
+        },
+        {
+          "char": "戶",
+          "pinyin": "hù",
+          "meaning": "window",
+          "time": 181.4
+        },
+        {
+          "char": "照",
+          "pinyin": "zhào",
+          "meaning": "shine",
+          "time": 182.7
+        },
+        {
+          "char": "無",
+          "pinyin": "wú",
+          "meaning": "without",
+          "time": 184.49
+        },
+        {
+          "char": "眠",
+          "pinyin": "mián",
+          "meaning": "sleep",
+          "time": 185.5
+        }
+      ],
+      "translation": "The moon circles the red tower, descends past the ornate windows, shining on the sleepless.",
+      "breakAfter": 5
+    },
+    {
+      "characters": [
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "meaning": "not",
+          "time": 188.13
+        },
+        {
+          "char": "應",
+          "pinyin": "yīng",
+          "meaning": "should",
+          "time": 188.63
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 189.53
+        },
+        {
+          "char": "恨",
+          "pinyin": "hèn",
+          "meaning": "regret",
+          "time": 190.39
+        },
+        {
+          "char": "何",
+          "pinyin": "hé",
+          "meaning": "what",
+          "time": 190.99
+        },
+        {
+          "char": "事",
+          "pinyin": "shì",
+          "meaning": "matter",
+          "time": 191.5
+        },
+        {
+          "char": "長",
+          "pinyin": "cháng",
+          "meaning": "always",
+          "time": 191.83
+        },
+        {
+          "char": "向",
+          "pinyin": "xiàng",
+          "meaning": "toward",
+          "time": 192.43
+        },
+        {
+          "char": "別",
+          "pinyin": "bié",
+          "meaning": "part",
+          "time": 193.5
+        },
+        {
+          "char": "時",
+          "pinyin": "shí",
+          "meaning": "time",
+          "time": 195.1
+        },
+        {
+          "char": "圓",
+          "pinyin": "yuán",
+          "meaning": "full",
+          "time": 196.5
+        }
+      ],
+      "translation": "The moon should hold no grudge—why is it always full when people are apart?",
+      "breakAfter": 3
+    },
+    {
+      "characters": [
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 208.98999999999998
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 209.97
+        },
+        {
+          "char": "悲",
+          "pinyin": "bēi",
+          "meaning": "sorrow",
+          "time": 210.6
+        },
+        {
+          "char": "歡",
+          "pinyin": "huān",
+          "meaning": "joy",
+          "time": 210.91
+        },
+        {
+          "char": "離",
+          "pinyin": "lí",
+          "meaning": "separation",
+          "time": 211.63
+        },
+        {
+          "char": "合",
+          "pinyin": "hé",
+          "meaning": "reunion",
+          "time": 212.6
+        },
+        {
+          "char": "月",
+          "pinyin": "yuè",
+          "meaning": "moon",
+          "time": 215.0
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "meaning": "have",
+          "time": 215.94
+        },
+        {
+          "char": "陰",
+          "pinyin": "yīn",
+          "meaning": "dark",
+          "time": 216.39999999999998
+        },
+        {
+          "char": "晴",
+          "pinyin": "qíng",
+          "meaning": "clear",
+          "time": 216.98
+        },
+        {
+          "char": "圓",
+          "pinyin": "yuán",
+          "meaning": "full",
+          "time": 217.53
+        },
+        {
+          "char": "缺",
+          "pinyin": "quē",
+          "meaning": "waning",
+          "time": 218.01999999999998
+        }
+      ],
+      "translation": "People experience sorrow and joy, separation and reunion; the moon has dark phases and bright, waxing and waning—",
+      "breakAfter": 6
+    },
+    {
+      "characters": [
+        {
+          "char": "此",
+          "pinyin": "cǐ",
+          "meaning": "this",
+          "time": 220.0
+        },
+        {
+          "char": "事",
+          "pinyin": "shì",
+          "meaning": "matter",
+          "time": 220.88
+        },
+        {
+          "char": "古",
+          "pinyin": "gǔ",
+          "meaning": "ancient",
+          "time": 222.28
+        },
+        {
+          "char": "難",
+          "pinyin": "nán",
+          "meaning": "difficult",
+          "time": 222.64
+        },
+        {
+          "char": "全",
+          "pinyin": "quán",
+          "meaning": "complete",
+          "time": 223.6
+        }
+      ],
+      "translation": "Such matters have never been perfect since ancient times."
+    },
+    {
+      "characters": [
+        {
+          "char": "但",
+          "pinyin": "dàn",
+          "meaning": "only",
+          "time": 225.89999999999998
+        },
+        {
+          "char": "願",
+          "pinyin": "yuàn",
+          "meaning": "wish",
+          "time": 226.82
+        },
+        {
+          "char": "人",
+          "pinyin": "rén",
+          "meaning": "people",
+          "time": 227.72
+        },
+        {
+          "char": "長",
+          "pinyin": "cháng",
+          "meaning": "long",
+          "time": 228.26999999999998
+        },
+        {
+          "char": "久",
+          "pinyin": "jiǔ",
+          "meaning": "lasting",
+          "time": 229.0
+        },
+        {
+          "char": "千",
+          "pinyin": "qiān",
+          "meaning": "thousand",
+          "time": 231.64999999999998
+        },
+        {
+          "char": "里",
+          "pinyin": "lǐ",
+          "meaning": "miles",
+          "time": 232.39
+        },
+        {
+          "char": "共",
+          "pinyin": "gòng",
+          "meaning": "share",
+          "time": 233.39
+        },
+        {
+          "char": "嬋",
+          "pinyin": "chán",
+          "meaning": "beautiful",
+          "time": 233.78
+        },
+        {
+          "char": "娟",
+          "pinyin": "juān",
+          "meaning": "moon",
+          "time": 234.38
+        }
+      ],
+      "translation": "I only wish that we may live long lives, and though a thousand miles apart, share the beauty of this moon together.",
+      "breakAfter": 5
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "metadata": {
+    "title": "但願人長久",
+    "title_translation": "Wishing Us Long Life",
+    "artist": "菲靡靡之音",
+    "artist_romanization": "Fei Mi Mi Zhi Yin",
+    "year": 1995,
+    "original_poem": "水調歌頭",
+    "original_poem_translation": "Shui Diao Ge Tou (Prelude to Water Melody)",
+    "poet": "蘇軾",
+    "poet_translation": "Su Shi",
+    "dynasty": "宋朝",
+    "dynasty_translation": "Song Dynasty",
+    "poem_year": 1076
+  },
+  "lyrics": [
+    {
+      "line": "明月幾時有，把酒問青天。",
+      "words": [
+        {
+          "chinese": "明月",
+          "literal": "bright moon",
+          "notes": "full/bright moon"
+        },
+        {
+          "chinese": "幾時",
+          "literal": "what time",
+          "notes": "when"
+        },
+        {
+          "chinese": "有",
+          "literal": "have/exist"
+        },
+        {
+          "chinese": "把",
+          "literal": "hold",
+          "notes": "measure word for holding"
+        },
+        {
+          "chinese": "酒",
+          "literal": "wine/liquor"
+        },
+        {
+          "chinese": "問",
+          "literal": "ask"
+        },
+        {
+          "chinese": "青天",
+          "literal": "blue sky",
+          "notes": "the heavens"
+        }
+      ],
+      "literal_translation": "Bright moon when time exist, hold wine ask blue sky.",
+      "natural_translation": "When did the bright moon first appear? I lift my wine cup and ask the blue sky."
+    },
+    {
+      "line": "不知天上宮闕，今夕是何年。",
+      "words": [
+        {
+          "chinese": "不",
+          "literal": "not"
+        },
+        {
+          "chinese": "知",
+          "literal": "know"
+        },
+        {
+          "chinese": "天上",
+          "literal": "sky above/heaven"
+        },
+        {
+          "chinese": "宮闕",
+          "literal": "palace halls",
+          "notes": "imperial palaces"
+        },
+        {
+          "chinese": "今夕",
+          "literal": "this evening"
+        },
+        {
+          "chinese": "是",
+          "literal": "is/be"
+        },
+        {
+          "chinese": "何",
+          "literal": "what/which"
+        },
+        {
+          "chinese": "年",
+          "literal": "year"
+        }
+      ],
+      "literal_translation": "Not know heaven above palace halls, this evening is what year.",
+      "natural_translation": "I wonder what year it is tonight in those celestial palaces above."
+    },
+    {
+      "line": "我欲乘風歸去，唯恐瓊樓玉宇，",
+      "words": [
+        {
+          "chinese": "我",
+          "literal": "I/me"
+        },
+        {
+          "chinese": "欲",
+          "literal": "desire/want"
+        },
+        {
+          "chinese": "乘",
+          "literal": "ride/mount"
+        },
+        {
+          "chinese": "風",
+          "literal": "wind"
+        },
+        {
+          "chinese": "歸去",
+          "literal": "return go",
+          "notes": "return home"
+        },
+        {
+          "chinese": "唯",
+          "literal": "only"
+        },
+        {
+          "chinese": "恐",
+          "literal": "fear/worry"
+        },
+        {
+          "chinese": "瓊樓",
+          "literal": "jade tower",
+          "notes": "magnificent buildings"
+        },
+        {
+          "chinese": "玉宇",
+          "literal": "jade universe",
+          "notes": "celestial palaces"
+        }
+      ],
+      "literal_translation": "I desire ride wind return go, only fear jade tower jade universe,",
+      "natural_translation": "I wish to ride the wind and return there, yet I fear those jade towers and crystal palaces,"
+    },
+    {
+      "line": "高處不勝寒。起舞弄清影，",
+      "words": [
+        {
+          "chinese": "高處",
+          "literal": "high place"
+        },
+        {
+          "chinese": "不勝",
+          "literal": "cannot withstand",
+          "notes": "unbearable"
+        },
+        {
+          "chinese": "寒",
+          "literal": "cold"
+        },
+        {
+          "chinese": "起",
+          "literal": "rise/stand up"
+        },
+        {
+          "chinese": "舞",
+          "literal": "dance"
+        },
+        {
+          "chinese": "弄",
+          "literal": "play with"
+        },
+        {
+          "chinese": "清影",
+          "literal": "clear shadow",
+          "notes": "moonlit shadow"
+        }
+      ],
+      "literal_translation": "High place cannot withstand cold. Rise dance play clear shadow,",
+      "natural_translation": "The heights are unbearably cold. I rise and dance, playing with my clear shadow,"
+    },
+    {
+      "line": "何似在人間。",
+      "words": [
+        {
+          "chinese": "何",
+          "literal": "what/how"
+        },
+        {
+          "chinese": "似",
+          "literal": "resemble/like",
+          "notes": "compare to"
+        },
+        {
+          "chinese": "在",
+          "literal": "at/in"
+        },
+        {
+          "chinese": "人間",
+          "literal": "human world",
+          "notes": "mortal realm"
+        }
+      ],
+      "literal_translation": "How compare to at human world.",
+      "natural_translation": "How can it compare to being in the mortal world?"
+    },
+    {
+      "line": "轉朱閣，低綺戶，照無眠。",
+      "words": [
+        {
+          "chinese": "轉",
+          "literal": "turn/revolve"
+        },
+        {
+          "chinese": "朱閣",
+          "literal": "vermillion pavilion",
+          "notes": "red-painted tower"
+        },
+        {
+          "chinese": "低",
+          "literal": "low/descend"
+        },
+        {
+          "chinese": "綺戶",
+          "literal": "silk door",
+          "notes": "ornate window"
+        },
+        {
+          "chinese": "照",
+          "literal": "shine upon/illuminate"
+        },
+        {
+          "chinese": "無",
+          "literal": "no/without"
+        },
+        {
+          "chinese": "眠",
+          "literal": "sleep"
+        }
+      ],
+      "literal_translation": "Turn vermillion pavilion, low silk door, shine without sleep.",
+      "natural_translation": "The moon circles the red tower, descends past the ornate windows, shining on the sleepless."
+    },
+    {
+      "line": "不應有恨，何事長向別時圓。",
+      "words": [
+        {
+          "chinese": "不應",
+          "literal": "should not"
+        },
+        {
+          "chinese": "有",
+          "literal": "have"
+        },
+        {
+          "chinese": "恨",
+          "literal": "hate/regret",
+          "notes": "resentment"
+        },
+        {
+          "chinese": "何",
+          "literal": "what"
+        },
+        {
+          "chinese": "事",
+          "literal": "matter/thing"
+        },
+        {
+          "chinese": "長",
+          "literal": "always/often"
+        },
+        {
+          "chinese": "向",
+          "literal": "toward/facing"
+        },
+        {
+          "chinese": "別時",
+          "literal": "parting time",
+          "notes": "time of separation"
+        },
+        {
+          "chinese": "圓",
+          "literal": "round/full",
+          "notes": "full moon"
+        }
+      ],
+      "literal_translation": "Should not have regret, what matter always toward parting time round.",
+      "natural_translation": "The moon should hold no grudge—why is it always full when people are apart?"
+    },
+    {
+      "line": "人有悲歡離合，月有陰晴圓缺，",
+      "words": [
+        {
+          "chinese": "人",
+          "literal": "people/humans"
+        },
+        {
+          "chinese": "有",
+          "literal": "have"
+        },
+        {
+          "chinese": "悲",
+          "literal": "sorrow"
+        },
+        {
+          "chinese": "歡",
+          "literal": "joy"
+        },
+        {
+          "chinese": "離",
+          "literal": "separation"
+        },
+        {
+          "chinese": "合",
+          "literal": "reunion/union"
+        },
+        {
+          "chinese": "月",
+          "literal": "moon"
+        },
+        {
+          "chinese": "有",
+          "literal": "have"
+        },
+        {
+          "chinese": "陰",
+          "literal": "dark/cloudy"
+        },
+        {
+          "chinese": "晴",
+          "literal": "clear/sunny"
+        },
+        {
+          "chinese": "圓",
+          "literal": "round/full"
+        },
+        {
+          "chinese": "缺",
+          "literal": "lacking/waning"
+        }
+      ],
+      "literal_translation": "People have sorrow joy separation union, moon have dark clear round lacking,",
+      "natural_translation": "People experience sorrow and joy, separation and reunion; the moon has dark phases and bright, waxing and waning—"
+    },
+    {
+      "line": "此事古難全。",
+      "words": [
+        {
+          "chinese": "此",
+          "literal": "this"
+        },
+        {
+          "chinese": "事",
+          "literal": "matter/thing"
+        },
+        {
+          "chinese": "古",
+          "literal": "ancient/since old times"
+        },
+        {
+          "chinese": "難",
+          "literal": "difficult"
+        },
+        {
+          "chinese": "全",
+          "literal": "complete/perfect"
+        }
+      ],
+      "literal_translation": "This matter ancient difficult complete.",
+      "natural_translation": "Such matters have never been perfect since ancient times."
+    },
+    {
+      "line": "但願人長久，千里共嬋娟。",
+      "words": [
+        {
+          "chinese": "但",
+          "literal": "only/merely"
+        },
+        {
+          "chinese": "願",
+          "literal": "wish/hope"
+        },
+        {
+          "chinese": "人",
+          "literal": "people/person"
+        },
+        {
+          "chinese": "長久",
+          "literal": "long time/lasting"
+        },
+        {
+          "chinese": "千里",
+          "literal": "thousand miles",
+          "notes": "far apart"
+        },
+        {
+          "chinese": "共",
+          "literal": "together/share"
+        },
+        {
+          "chinese": "嬋娟",
+          "literal": "beautiful lady",
+          "notes": "poetic name for the moon"
+        }
+      ],
+      "literal_translation": "Only wish people long lasting, thousand miles together beautiful moon.",
+      "natural_translation": "I only wish that we may live long lives, and though a thousand miles apart, share the beauty of this moon together."
+    }
+  ],
+  "notes": {
+    "context": "This is one of the most famous classical Chinese poems, written by Su Shi in 1076 during the Mid-Autumn Festival while separated from his brother. The poem contemplates the moon, immortality, separation, and acceptance of life's imperfections.",
+    "themes": [
+      "longing and separation",
+      "the passage of time",
+      "acceptance of imperfection",
+      "shared beauty despite distance"
+    ],
+    "cultural_significance": "The final line '但願人長久，千里共嬋娟' has become one of the most famous quotes in Chinese literature, often used to express good wishes for loved ones who are far away."
+  }
+}
+

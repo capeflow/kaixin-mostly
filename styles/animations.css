@@ -1,0 +1,411 @@
+/* Golden Spotlight Animation - Pure CSS */
+
+/* Golden active state - the character being sung */
+.stone.golden-active {
+    z-index: 20;
+    transform: scale(1.08);
+}
+
+.stone.golden-active .stone-top {
+    box-shadow: 
+        inset -2px -2px 8px rgba(255, 215, 0, 0.3),
+        inset 2px 2px 8px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.3),
+        0 8px 24px var(--shadow-ambient);
+    background: linear-gradient(135deg, 
+        var(--gold-bg) 0%, 
+        var(--gold-bg-light) 100%);
+}
+
+/* Golden border glow animation */
+.stone.golden-active .stone-top::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.5), 
+        rgba(255, 230, 100, 0.3),
+        rgba(255, 215, 0, 0.5));
+    z-index: -1;
+    opacity: 0;
+    animation: goldenGlow 1.2s ease-in-out;
+}
+
+@keyframes goldenGlow {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+}
+
+/* Character gets golden text effect */
+.stone.golden-active .hanzi {
+    color: #8B7355;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.4),
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        -1px -1px 1px rgba(218, 165, 32, 0.3);
+}
+
+/* Pinyin gets enhanced */
+.stone.golden-active .pinyin {
+    color: #8B7355;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 1);
+}
+
+/* Title fade in/out */
+.title-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 900;
+    pointer-events: none;
+    opacity: 0; /* hidden by default; shown when intro runs */
+}
+
+.title-overlay.show {
+    animation: titleFade 6s ease-in-out forwards; /* fade in, hold, fade out at ~10s total */
+}
+
+@keyframes titleFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Flower button appearance */
+.flower {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(22vmin, 220px);
+    height: min(22vmin, 220px);
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    animation: flowerAppear 1.2s ease-out forwards;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent clipping when animating/stroking */
+.flower, .flower-svg { overflow: visible; }
+
+/* Intro layering/visibility controls */
+body.app-intro .settings-flower { opacity: 0; pointer-events: none; }
+body.app-intro .translation-display { opacity: 0; pointer-events: none; }
+body.app-intro .timeline { opacity: 0; pointer-events: none; }
+body.app-intro .verse-container { opacity: 0; pointer-events: none; }
+
+/* During intro, the flower starts as a simple dot (hide petals) */
+body.app-intro .flower .petal {
+    opacity: 0;
+    transform: scale(0);
+}
+body.app-intro .flower .center-circle { 
+    opacity: 0.9; 
+}
+
+/* When intro starts, petals spin out centrifugally from center */
+.flower.intro-start .petal {
+    transform-origin: 50px 50px;
+    animation: petalCentrifuge 4s ease-out forwards;
+}
+.flower.intro-start .center-circle {
+    animation: centerFade 4s ease-out forwards;
+}
+
+/* After evaporate, hide the flower entirely */
+.flower.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@keyframes flowerAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8) rotate(-10deg);
+    }
+    to {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+}
+
+.flower:hover {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.flower.playing {
+    opacity: 0.5;
+    top: 3rem;
+    left: 3rem;
+    transform: translate(0, 0) scale(0.8);
+    width: 64px;
+    height: 64px;
+}
+
+.flower.playing:hover {
+    opacity: 0.8;
+    transform: translate(0, 0) scale(0.85);
+}
+
+/* Petal animation when playing */
+.flower.playing .petal {
+    animation: petalPulse 2s ease-in-out infinite;
+}
+
+@keyframes petalPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Petals spin out centrifugally and evaporate (3 rotations) */
+@keyframes petalCentrifuge {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0) rotate(0deg);
+    }
+    15% {
+        opacity: 0.9;
+        transform: translate(0, 0) scale(0.3) rotate(180deg);
+    }
+    35% {
+        opacity: 0.85;
+        transform: translate(0, 0) scale(0.7) rotate(540deg);
+    }
+    60% {
+        opacity: 0.7;
+        transform: translate(0, 0) scale(1.1) rotate(900deg);
+    }
+    85% {
+        opacity: 0.3;
+        transform: translate(0, 0) scale(1.5) rotate(1020deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(1.8) rotate(1080deg);
+    }
+}
+
+/* Center dot stays anchored and gently fades */
+@keyframes centerFade {
+    0% { 
+        opacity: 0.9; 
+    }
+    50% { 
+        opacity: 0.6; 
+    }
+    100% { 
+        opacity: 0; 
+    }
+}
+
+/* Interlude starry night effect with morphing dark sky */
+body.interlude-mode {
+    animation: nightSkyMorph 24s ease-in-out infinite;
+    transition: all 3s ease;
+}
+
+@keyframes nightSkyMorph {
+    0% {
+        background: radial-gradient(ellipse at 50% 50%, 
+            rgba(10, 15, 25, 1) 0%, 
+            rgba(5, 10, 20, 1) 50%, 
+            rgba(0, 5, 15, 1) 100%);
+    }
+    10% {
+        background: radial-gradient(ellipse at 48% 52%, 
+            rgba(8, 12, 28, 1) 0%, 
+            rgba(5, 8, 22, 1) 50%, 
+            rgba(2, 5, 18, 1) 100%);
+    }
+    20% {
+        background: radial-gradient(ellipse at 46% 54%, 
+            rgba(12, 10, 30, 1) 0%, 
+            rgba(8, 8, 24, 1) 50%, 
+            rgba(4, 6, 20, 1) 100%);
+    }
+    30% {
+        background: radial-gradient(ellipse at 52% 48%, 
+            rgba(15, 12, 32, 1) 0%, 
+            rgba(10, 10, 26, 1) 50%, 
+            rgba(5, 8, 22, 1) 100%);
+    }
+    40% {
+        background: radial-gradient(ellipse at 54% 46%, 
+            rgba(18, 15, 35, 1) 0%, 
+            rgba(12, 12, 28, 1) 50%, 
+            rgba(6, 10, 24, 1) 100%);
+    }
+    50% {
+        background: radial-gradient(ellipse at 50% 50%, 
+            rgba(20, 18, 38, 1) 0%, 
+            rgba(15, 15, 30, 1) 50%, 
+            rgba(8, 12, 26, 1) 100%);
+    }
+    60% {
+        background: radial-gradient(ellipse at 46% 54%, 
+            rgba(18, 15, 35, 1) 0%, 
+            rgba(12, 12, 28, 1) 50%, 
+            rgba(6, 10, 24, 1) 100%);
+    }
+    70% {
+        background: radial-gradient(ellipse at 54% 46%, 
+            rgba(15, 12, 32, 1) 0%, 
+            rgba(10, 10, 26, 1) 50%, 
+            rgba(5, 8, 22, 1) 100%);
+    }
+    80% {
+        background: radial-gradient(ellipse at 52% 48%, 
+            rgba(12, 10, 30, 1) 0%, 
+            rgba(8, 8, 24, 1) 50%, 
+            rgba(4, 6, 20, 1) 100%);
+    }
+    90% {
+        background: radial-gradient(ellipse at 48% 52%, 
+            rgba(8, 12, 28, 1) 0%, 
+            rgba(5, 8, 22, 1) 50%, 
+            rgba(2, 5, 18, 1) 100%);
+    }
+    100% {
+        background: radial-gradient(ellipse at 50% 50%, 
+            rgba(10, 15, 25, 1) 0%, 
+            rgba(5, 10, 20, 1) 50%, 
+            rgba(0, 5, 15, 1) 100%);
+    }
+}
+
+body.interlude-mode .timeline {
+    background: linear-gradient(to top, rgba(30, 40, 60, 0.7), rgba(20, 30, 50, 0.5), transparent);
+    backdrop-filter: blur(15px);
+    transition: background 3s ease;
+}
+
+body.interlude-mode .player-shell {
+    background: rgba(30, 40, 60, 0.6);
+    border: 1px solid rgba(150, 170, 200, 0.25);
+    backdrop-filter: blur(15px);
+    transition: all 3s ease;
+}
+
+body.interlude-mode .time-group {
+    color: rgba(200, 220, 240, 0.9);
+    transition: color 3s ease;
+}
+
+body.interlude-mode .ctrl {
+    border-color: rgba(150, 170, 200, 0.35);
+    color: rgba(200, 220, 240, 0.9);
+    transition: all 3s ease;
+}
+
+/* Firefly particles */
+.fireflies {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.fireflies.visible {
+    opacity: 1;
+}
+
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(139, 115, 85, 0.95), rgba(164, 140, 110, 0.6), transparent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: firefly-drift var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    box-shadow: 0 0 6px rgba(139, 115, 85, 0.4), 0 0 12px rgba(164, 140, 110, 0.2);
+}
+
+/* Sunrise particles - lighthouse beam effect with varied sizes */
+.firefly-sunrise {
+    width: var(--particle-size, 5px);
+    height: var(--particle-size, 5px);
+}
+
+/* Starry night particles - bright stars against dark sky */
+.firefly-sunrise:nth-child(5n) {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(220, 240, 255, 0.7), transparent);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 24px rgba(220, 240, 255, 0.4);
+}
+
+.firefly-sunrise:nth-child(5n+1) {
+    background: radial-gradient(circle, rgba(255, 245, 200, 0.98), rgba(255, 235, 180, 0.75), transparent);
+    box-shadow: 0 0 14px rgba(255, 245, 200, 0.7), 0 0 28px rgba(255, 235, 180, 0.45);
+}
+
+.firefly-sunrise:nth-child(5n+2) {
+    background: radial-gradient(circle, rgba(200, 220, 255, 0.95), rgba(180, 200, 255, 0.7), transparent);
+    box-shadow: 0 0 16px rgba(200, 220, 255, 0.65), 0 0 32px rgba(180, 200, 255, 0.4);
+}
+
+.firefly-sunrise:nth-child(5n+3) {
+    background: radial-gradient(circle, rgba(255, 255, 240, 0.98), rgba(255, 250, 220, 0.75), transparent);
+    box-shadow: 0 0 18px rgba(255, 255, 240, 0.7), 0 0 36px rgba(255, 250, 220, 0.45);
+}
+
+.firefly-sunrise:nth-child(5n+4) {
+    background: radial-gradient(circle, rgba(220, 235, 255, 0.95), rgba(200, 220, 255, 0.7), transparent);
+    box-shadow: 0 0 20px rgba(220, 235, 255, 0.65), 0 0 40px rgba(200, 220, 255, 0.4);
+}
+
+@keyframes firefly-drift {
+    0% {
+        transform: translate(var(--start-x), var(--start-y)) scale(0.6) rotate(0deg);
+        opacity: 0;
+    }
+    8% {
+        opacity: var(--opacity);
+    }
+    25% {
+        transform: translate(calc(var(--start-x) + (var(--mid-x) - var(--start-x)) * 0.4), 
+                            calc(var(--start-y) + (var(--mid-y) - var(--start-y)) * 0.5)) 
+                   scale(0.9) rotate(15deg);
+    }
+    50% {
+        transform: translate(var(--mid-x), var(--mid-y)) scale(1.1) rotate(-10deg);
+        opacity: var(--opacity);
+    }
+    75% {
+        transform: translate(calc(var(--mid-x) + (var(--end-x) - var(--mid-x)) * 0.6), 
+                            calc(var(--mid-y) + (var(--end-y) - var(--mid-y)) * 0.5)) 
+                   scale(0.95) rotate(20deg);
+    }
+    92% {
+        opacity: var(--opacity);
+    }
+    100% {
+        transform: translate(var(--end-x), var(--end-y)) scale(0.7) rotate(-5deg);
+        opacity: 0;
+    }
+}
+

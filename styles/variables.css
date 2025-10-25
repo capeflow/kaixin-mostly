@@ -1,0 +1,90 @@
+/* Design Tokens - Washi Paper & Mahjong Stone Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&display=swap');
+
+:root {
+    /* Washi paper - warm, organic white */
+    --paper: #fefefc;
+    --paper-shadow: rgba(0, 0, 0, 0.02);
+    
+    /* Stone - warm whites with subtle variance */
+    --stone-base: #f8f8f6;
+    --stone-light: #fcfcfb;
+    --stone-dark: #f0f0ee;
+    
+    /* Carved text - like indentations catching shadow */
+    --carved-deep: #a8a8a4;
+    --carved-medium: #c4c4c0;
+    --carved-light: #d8d8d4;
+    
+    /* Golden highlight */
+    --gold-primary: rgb(255, 215, 0);
+    --gold-light: rgb(255, 230, 100);
+    --gold-dark: rgb(218, 165, 32);
+    --gold-bg: rgba(255, 252, 240, 1);
+    --gold-bg-light: rgba(255, 248, 220, 1);
+    
+    /* Borders */
+    --border-color: #e8e8e6;
+    
+    /* Shadows - soft, diffused, natural */
+    --shadow-ambient: rgba(0, 0, 0, 0.04);
+    --shadow-direct: rgba(0, 0, 0, 0.08);
+    --shadow-soft: rgba(0, 0, 0, 0.03);
+    
+    /* Stone depth */
+    --stone-sunken: 
+        inset 3px 3px 6px var(--shadow-ambient),
+        inset -2px -2px 6px var(--stone-light);
+    --stone-raised: 
+        -4px -4px 8px var(--stone-light),
+        4px 4px 8px var(--shadow-ambient),
+        inset -1px -1px 2px var(--shadow-soft);
+    
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    /* Dark backgrounds - charcoal and deep grays */
+    --paper: #1a1a1a;
+    --paper-shadow: rgba(255, 255, 255, 0.02);
+    
+    /* Dark stone tiles */
+    --stone-base: #2a2a2a;
+    --stone-light: #333333;
+    --stone-dark: #222222;
+    
+    /* Light text for dark mode */
+    --carved-deep: #e0e0e0;
+    --carved-medium: #c0c0c0;
+    --carved-light: #a0a0a0;
+    
+    /* Adjusted gold for dark mode */
+    --gold-primary: rgb(255, 215, 100);
+    --gold-light: rgb(255, 230, 150);
+    --gold-dark: rgb(218, 180, 60);
+    --gold-bg: rgba(60, 55, 40, 1);
+    --gold-bg-light: rgba(70, 65, 50, 1);
+    
+    /* Dark borders */
+    --border-color: #404040;
+    
+    /* Inverted shadows for depth */
+    --shadow-ambient: rgba(0, 0, 0, 0.3);
+    --shadow-direct: rgba(0, 0, 0, 0.5);
+    --shadow-soft: rgba(0, 0, 0, 0.2);
+    
+    /* Dark stone depth */
+    --stone-sunken: 
+        inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+        inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+    --stone-raised: 
+        -4px -4px 8px rgba(255, 255, 255, 0.02),
+        4px 4px 8px rgba(0, 0, 0, 0.3),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.2);
+}
+
