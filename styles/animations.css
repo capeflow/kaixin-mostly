@@ -409,3 +409,122 @@ body.interlude-mode .ctrl {
     }
 }
 
+/* Mobile animation optimizations */
+@media screen and (max-width: 768px) {
+    /* Reduce particle count and simplify animations for better performance */
+    .firefly {
+        width: 3px;
+        height: 3px;
+    }
+    
+    .firefly-sunrise {
+        width: calc(var(--particle-size, 5px) * 0.8);
+        height: calc(var(--particle-size, 5px) * 0.8);
+    }
+    
+    /* Simplify golden glow animation on mobile */
+    .stone.golden-active .stone-top::before {
+        animation-duration: 1s;
+    }
+    
+    /* Reduce golden active scale for mobile */
+    .stone.golden-active {
+        transform: scale(1.05);
+    }
+    
+    /* Simplify flower animations on mobile */
+    .flower {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes flowerAppear {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+        to {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Further reduce visual complexity on small screens */
+    .firefly {
+        width: 2.5px;
+        height: 2.5px;
+        box-shadow: 0 0 4px rgba(139, 115, 85, 0.3), 0 0 8px rgba(164, 140, 110, 0.15);
+    }
+    
+    /* Reduce glow effects for better performance */
+    .stone.golden-active .stone-top {
+        box-shadow: 
+            inset -2px -2px 6px rgba(255, 215, 0, 0.25),
+            inset 2px 2px 6px rgba(255, 255, 255, 0.7),
+            0 0 15px rgba(255, 215, 0, 0.5),
+            0 6px 20px var(--shadow-ambient);
+    }
+    
+    /* Simplify petal animation */
+    @keyframes petalCentrifuge {
+        0% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0) rotate(0deg);
+        }
+        20% {
+            opacity: 0.9;
+            transform: translate(0, 0) scale(0.5) rotate(360deg);
+        }
+        50% {
+            opacity: 0.7;
+            transform: translate(0, 0) scale(1) rotate(720deg);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(0, 0) scale(1.5) rotate(900deg);
+        }
+    }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .firefly {
+        display: none;
+    }
+    
+    .stone.golden-active {
+        transform: none;
+    }
+    
+    .stone.golden-active .stone-top::before {
+        display: none;
+    }
+}
+
+/* Performance optimization for mobile devices */
+@media screen and (max-width: 768px) {
+    /* Enable GPU acceleration for animations */
+    .stone,
+    .verse,
+    .flower,
+    .firefly,
+    .timeline {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+    
+    /* Remove will-change after animations complete (handled by JS) */
+    .verse:not(.active) {
+        will-change: auto;
+    }
+}
+

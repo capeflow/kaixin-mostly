@@ -103,10 +103,11 @@
 .verse-row {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping by default, especially for mobile */
     gap: clamp(2rem, 4vw, 4rem);
     justify-content: center;
     align-items: center;
+    max-width: 100%;
 }
 
 /* Translation below verse - separate container */
@@ -125,5 +126,148 @@
 
 .translation-display.visible {
     opacity: 0.9;
+}
+
+/* ===== MOBILE RESPONSIVE TILE LAYOUT ===== */
+
+/* Desktop - keep rows in single line if they fit */
+@media screen and (min-width: 1025px) {
+    .verse-row {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Tablets and medium screens - tighter spacing, allow wrapping */
+@media screen and (max-width: 1024px) {
+    .verse-row {
+        gap: clamp(1.5rem, 3.5vw, 3rem);
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile devices - reduce tile size and allow wrapping if needed */
+@media screen and (max-width: 768px) {
+    .stone {
+        width: clamp(65px, 11vw, 85px);
+    }
+    
+    .stone-top {
+        padding: clamp(0.55rem, 1.1vw, 0.9rem);
+        min-height: clamp(55px, 11vw, 70px);
+    }
+    
+    .stone-bottom, .stone-band {
+        padding: clamp(0.35rem, 0.7vw, 0.55rem);
+        min-height: clamp(26px, 5.5vw, 33px);
+    }
+    
+    .verse-row {
+        gap: clamp(0.8rem, 2.5vw, 1.8rem);
+        /* Allow wrapping if tiles don't fit */
+        flex-wrap: wrap;
+    }
+}
+
+/* Small mobile - even smaller tiles, wrapping encouraged */
+@media screen and (max-width: 640px) {
+    .stone {
+        width: clamp(58px, 13vw, 75px);
+    }
+    
+    .stone-top {
+        padding: clamp(0.45rem, 1vw, 0.75rem);
+        min-height: clamp(50px, 13vw, 62px);
+    }
+    
+    .stone-bottom, .stone-band {
+        padding: clamp(0.3rem, 0.65vw, 0.5rem);
+        min-height: clamp(24px, 6vw, 30px);
+    }
+    
+    .verse-row {
+        gap: clamp(0.6rem, 2vw, 1.5rem);
+        flex-wrap: wrap;
+        /* Slightly reduce max width to prevent edge bleeding */
+        max-width: 95vw;
+    }
+}
+
+/* Very small mobile - compact tiles, definitely wrapping */
+@media screen and (max-width: 480px) {
+    .stone {
+        width: clamp(52px, 15vw, 68px);
+        gap: 5px;
+    }
+    
+    .stone-top {
+        padding: clamp(0.4rem, 0.9vw, 0.65rem);
+        min-height: clamp(46px, 15vw, 58px);
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .stone-bottom, .stone-band {
+        padding: clamp(0.25rem, 0.6vw, 0.45rem);
+        min-height: clamp(22px, 7vw, 28px);
+        border-radius: 0 0 5px 5px;
+    }
+    
+    .verse-row {
+        gap: clamp(0.5rem, 1.8vw, 1.2rem);
+        flex-wrap: wrap;
+        max-width: 96vw;
+        /* Better line spacing when wrapped */
+        row-gap: clamp(0.8rem, 2vh, 1.2rem);
+    }
+    
+    /* Adjust verse spacing when rows wrap */
+    .verse {
+        gap: clamp(0.6rem, 1.5vh, 1rem);
+    }
+}
+
+/* Extra small screens - prioritize readability */
+@media screen and (max-width: 360px) {
+    .stone {
+        width: clamp(48px, 17vw, 62px);
+    }
+    
+    .stone-top {
+        padding: clamp(0.35rem, 0.8vw, 0.6rem);
+        min-height: clamp(42px, 17vw, 54px);
+    }
+    
+    .stone-bottom, .stone-band {
+        padding: clamp(0.2rem, 0.55vw, 0.4rem);
+        min-height: clamp(20px, 8vw, 26px);
+    }
+    
+    .verse-row {
+        gap: clamp(0.4rem, 1.5vw, 1rem);
+        row-gap: clamp(0.7rem, 1.8vh, 1rem);
+    }
+}
+
+/* Landscape mobile - horizontal scrolling option for long rows */
+@media screen and (max-width: 896px) and (orientation: landscape) and (max-height: 500px) {
+    /* In landscape on small screens, keep rows compact but scrollable */
+    .verse-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.5rem 1rem;
+        margin: 0 -1rem;
+        /* Hide scrollbar but keep functionality */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .verse-row::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .stone {
+        flex-shrink: 0; /* Prevent tiles from shrinking */
+        width: clamp(55px, 12vw, 72px);
+    }
 }
 

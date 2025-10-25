@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>但願人長久 - Wishing Us Long Life</title>
     
     <!-- CSS Modules -->
@@ -150,6 +150,8 @@
             transition: opacity 0.6s ease;
             z-index: 100;
             backdrop-filter: blur(8px);
+            /* Safe area for mobile devices (notch, home indicator) */
+            padding-bottom: env(safe-area-inset-bottom);
         }
         
         .timeline.visible { opacity: 1; pointer-events: auto; }
@@ -168,6 +170,7 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.6);
             padding: 10px 14px;
             backdrop-filter: blur(16px) saturate(180%);
+            margin-bottom: 12px; /* Add space from bottom of screen */
         }
         .controls { display: flex; gap: 10px; align-items: center; }
         .ctrl {
@@ -383,6 +386,323 @@
         .settings-item.dragging { opacity: .6; }
         .settings-item label { color: var(--carved-deep); }
         .settings-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+        
+        /* ===== MOBILE RESPONSIVE STYLES ===== */
+        
+        /* Tablets and smaller (landscape and portrait) */
+        @media screen and (max-width: 1024px) {
+            .verse-container {
+                padding: 8vh 6vw;
+            }
+            
+            /* Verse row spacing is handled in stone.css */
+            
+            .translation-display {
+                bottom: 16vh;
+                width: 85%;
+                padding: 0 1.5rem;
+            }
+        }
+        
+        /* Mobile devices (portrait and small landscape) */
+        @media screen and (max-width: 768px) {
+            /* Reduce container padding for more screen real estate */
+            .verse-container {
+                padding: 6vh 4vw;
+            }
+            
+            /* Tile sizing and spacing handled in stone.css */
+            
+            /* More compact verse spacing */
+            .verse {
+                gap: clamp(0.6rem, 1.5vh, 1rem);
+                padding: 3vh 3vw;
+            }
+            
+            /* Adjust translation position to avoid timeline overlap */
+            .translation-display {
+                bottom: 20vh;
+                width: 90%;
+                padding: 0 1rem;
+                font-size: clamp(1rem, 1.2vw, 1.2rem);
+            }
+            
+            /* Make player bar more compact and higher from bottom */
+            .timeline {
+                height: 90px;
+            }
+            
+            .player-shell {
+                width: 96vw;
+                grid-template-columns: auto 100px 1fr;
+                gap: 0.6rem;
+                padding: 8px 10px;
+                margin-bottom: 16px; /* More space on mobile */
+            }
+            
+            /* Smaller controls */
+            .ctrl {
+                height: 32px;
+                min-width: 32px;
+                padding: 0 10px;
+                font-size: 13px;
+            }
+            
+            .ctrl-skip {
+                padding: 0 8px;
+            }
+            
+            .ctrl-skip svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .controls {
+                gap: 6px;
+            }
+            
+            /* Smaller time display */
+            .time-group {
+                font-size: 12px;
+            }
+            
+            /* Settings button - keep accessible */
+            .settings-flower {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .settings-flower img {
+                width: 26px;
+                height: 26px;
+            }
+            
+            /* Adjust flower button size */
+            .flower {
+                width: min(28vmin, 180px);
+                height: min(28vmin, 180px);
+            }
+            
+            .flower.playing {
+                width: 56px;
+                height: 56px;
+                top: 2.5rem;
+                left: 2.5rem;
+            }
+            
+            /* Settings modal - full width on mobile */
+            .settings-modal {
+                width: 94vw;
+                max-height: 85vh;
+                overflow-y: auto;
+            }
+        }
+        
+        /* Small mobile devices (portrait) */
+        @media screen and (max-width: 480px) {
+            /* Even more compact layout */
+            .verse-container {
+                padding: 4vh 3vw;
+            }
+            
+            /* Verse row wrapping is handled in stone.css */
+            
+            .verse {
+                gap: clamp(0.5rem, 1vh, 0.8rem);
+                padding: 2vh 2vw;
+            }
+            
+            /* Stack player controls vertically on very small screens */
+            .player-shell {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                gap: 0.5rem;
+                padding: 8px;
+            }
+            
+            /* Center controls and time on small screens */
+            .controls {
+                justify-content: center;
+                order: 2;
+            }
+            
+            .time-group {
+                order: 1;
+                text-align: center;
+                margin-bottom: 4px;
+            }
+            
+            .timeline-track {
+                order: 3;
+                grid-column: 1;
+            }
+            
+            /* Adjust translation for very small screens */
+            .translation-display {
+                bottom: 18vh;
+                width: 92%;
+                padding: 0 0.5rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            /* Taller timeline container for small screens */
+            .timeline {
+                height: 100px;
+            }
+            
+            .player-shell {
+                margin-bottom: 20px; /* Even more space on small mobile */
+            }
+            
+            /* Smaller settings button on tiny screens */
+            .settings-flower {
+                width: 36px;
+                height: 36px;
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+            
+            .settings-flower img {
+                width: 22px;
+                height: 22px;
+            }
+            
+            /* Smaller flower button */
+            .flower {
+                width: min(32vmin, 160px);
+                height: min(32vmin, 160px);
+            }
+            
+            .flower.playing {
+                width: 48px;
+                height: 48px;
+                top: 2rem;
+                left: 2rem;
+            }
+            
+            /* Title overlay - smaller on mobile */
+            .title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+                letter-spacing: 0.15em;
+            }
+            
+            .subtitle {
+                font-size: clamp(0.8rem, 2vw, 1rem);
+            }
+            
+            /* Settings modal adjustments */
+            .settings-modal {
+                width: 96vw;
+                padding: 12px;
+            }
+            
+            .settings-header h3 {
+                font-size: 16px;
+            }
+            
+            .settings-section-title {
+                font-size: 13px;
+            }
+            
+            .settings-sub {
+                font-size: 12px;
+            }
+        }
+        
+        /* Landscape orientation on mobile */
+        @media screen and (max-width: 896px) and (orientation: landscape) {
+            /* Reduce vertical padding in landscape */
+            .verse-container {
+                padding: 3vh 4vw;
+            }
+            
+            .verse {
+                gap: clamp(0.4rem, 1vh, 0.8rem);
+                padding: 2vh 3vw;
+            }
+            
+            /* Move translation higher to avoid timeline */
+            .translation-display {
+                bottom: 22vh;
+            }
+            
+            /* More compact timeline in landscape */
+            .timeline {
+                height: 80px;
+            }
+            
+            .player-shell {
+                margin-bottom: 14px;
+            }
+            
+            /* Smaller flower in landscape mode */
+            .flower {
+                width: min(20vmin, 140px);
+                height: min(20vmin, 140px);
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Larger touch targets */
+            .ctrl {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .settings-flower {
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
+            /* Remove hover effects that don't work on touch */
+            .ctrl:hover {
+                transform: none;
+            }
+            
+            /* Add active states for better touch feedback */
+            .ctrl:active {
+                transform: scale(0.95);
+                background: rgba(255, 255, 255, 0.3);
+            }
+            
+            .settings-flower:active {
+                transform: scale(0.95);
+            }
+            
+            /* Make timeline handle larger for touch */
+            .timeline-handle {
+                width: 20px;
+                height: 20px;
+            }
+            
+            /* Prevent double-tap zoom */
+            * {
+                touch-action: manipulation;
+            }
+        }
+        
+        /* High DPI displays - optimize rendering */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        
+        /* Prevent horizontal scroll on all devices */
+        body, html {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        #viewport {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
     </style>
 </body>
 </html>

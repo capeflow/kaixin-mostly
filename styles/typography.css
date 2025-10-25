@@ -75,3 +75,61 @@ body {
     font-style: italic;
 }
 
+/* Mobile typography adjustments */
+@media screen and (max-width: 768px) {
+    .hanzi {
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+    }
+    
+    .pinyin {
+        font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+    }
+    
+    .english {
+        font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+    }
+    
+    .translation,
+    .translation-display {
+        font-size: clamp(1rem, 1.8vw, 1.2rem);
+        line-height: 1.7;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hanzi {
+        font-size: clamp(1.4rem, 5vw, 1.9rem);
+        letter-spacing: 0.01em;
+    }
+    
+    .pinyin {
+        font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+        line-height: 1.1;
+    }
+    
+    .english {
+        font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+        line-height: 1.1;
+    }
+    
+    .translation,
+    .translation-display {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        line-height: 1.6;
+        letter-spacing: 0.02em;
+    }
+}
+
+/* Landscape mobile typography */
+@media screen and (max-width: 896px) and (orientation: landscape) {
+    .hanzi {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+    }
+    
+    .translation,
+    .translation-display {
+        font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        line-height: 1.5;
+    }
+}
+
