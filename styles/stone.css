@@ -88,8 +88,8 @@ body.dark-mode .stone:not(.golden-active) .stone-band {
 /* Optional middle section for future use */
 .stone-mid { display: flex; align-items: center; justify-content: center; }
 
-/* Hide English translations when disabled */
-body.hide-english .english {
+/* Hide natural translation sentences when disabled */
+body.hide-english .translation-display {
     display: none !important;
 }
 

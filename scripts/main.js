@@ -68,6 +68,14 @@ class KaixinApp {
  
         this.updatePlayButtonIcon(false);
         
+        // Apply English translation preference EARLY (before rendering)
+        const showEnglish = localStorage.getItem('showEnglish');
+        if (showEnglish === 'true') {
+            document.body.classList.remove('hide-english');
+        } else {
+            document.body.classList.add('hide-english');
+        }
+        
         // Load song data
         const songData = await this.loadSongData();
         this.state.setState({ song: songData });
