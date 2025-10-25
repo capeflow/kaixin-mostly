@@ -443,9 +443,10 @@
         
         /* Mobile devices (portrait and small landscape) */
         @media screen and (max-width: 768px) {
-            /* Reduce container padding for more screen real estate */
+            /* Give more space for lyrics - align from top */
             .verse-container {
-                padding: 6vh 4vw;
+                padding: 12vh 4vw 8vh 4vw;
+                justify-content: flex-start;
             }
             
             /* Tile sizing and spacing handled in stone.css */
@@ -453,12 +454,12 @@
             /* More compact verse spacing */
             .verse {
                 gap: clamp(0.6rem, 1.5vh, 1rem);
-                padding: 3vh 3vw;
+                padding: 2vh 3vw;
             }
             
             /* Adjust translation position to avoid timeline overlap */
             .translation-display {
-                bottom: 22vh;
+                bottom: 16vh;
                 width: 90%;
                 padding: 0 1rem;
                 font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -545,9 +546,10 @@
         
         /* Small mobile devices (portrait) */
         @media screen and (max-width: 480px) {
-            /* Even more compact layout */
+            /* Give lyrics space at top of screen */
             .verse-container {
-                padding: 4vh 3vw;
+                padding: 10vh 3vw 8vh 3vw;
+                justify-content: flex-start;
             }
             
             /* Verse row wrapping is handled in stone.css */
@@ -659,19 +661,20 @@
         
         /* Landscape orientation on mobile */
         @media screen and (max-width: 896px) and (orientation: landscape) {
-            /* Reduce vertical padding in landscape */
+            /* Reduce vertical padding in landscape but start from top */
             .verse-container {
-                padding: 3vh 4vw;
+                padding: 8vh 4vw 4vh 4vw;
+                justify-content: flex-start;
             }
             
             .verse {
                 gap: clamp(0.4rem, 1vh, 0.8rem);
-                padding: 2vh 3vw;
+                padding: 1.5vh 3vw;
             }
             
             /* Move translation higher to avoid timeline */
             .translation-display {
-                bottom: 22vh;
+                bottom: 18vh;
             }
             
             /* More compact timeline in landscape */

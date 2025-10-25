@@ -127,15 +127,15 @@ body.dark-mode .verse.active::before {
 /* Mobile - shift verse content to optimal position to prevent overlap with translation */
 @media screen and (max-width: 768px) {
     .verse-container {
-        justify-content: center;
-        padding: 0vh 8vw 22vh 8vw;
+        justify-content: flex-start;
+        padding: 12vh 8vw 8vh 8vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     .verse-container {
-        justify-content: center;
-        padding: 0vh 6vw 25vh 6vw;
+        justify-content: flex-start;
+        padding: 10vh 6vw 8vh 6vw;
     }
 }
 
@@ -207,7 +207,7 @@ body.dark-mode .verse.active::before {
 /* Mobile - move translation much lower to avoid overlap */
 @media screen and (max-width: 768px) {
     .translation-display {
-        bottom: 14vh;
+        bottom: 16vh;
         width: 90%;
         padding: 0 1rem;
     }
@@ -215,7 +215,7 @@ body.dark-mode .verse.active::before {
 
 @media screen and (max-width: 480px) {
     .translation-display {
-        bottom: 26vh;
+        bottom: 18vh;
         width: 92%;
         padding: 0 0.75rem;
     }
