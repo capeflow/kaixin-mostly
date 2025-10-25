@@ -90,7 +90,7 @@ body.dark-mode .stone:not(.golden-active) .stone-band {
 
 /* Hide English translations when disabled */
 body.hide-english .english {
-    display: none;
+    display: none !important;
 }
 
 /* Soft ambient wash behind the active verse */
