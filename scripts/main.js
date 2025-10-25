@@ -64,6 +64,8 @@ class KaixinApp {
         this.settingsSave = document.getElementById('settings-save');
         this.settingsList = document.getElementById('settings-list');
         this.darkModeToggle = document.getElementById('dark-mode-toggle');
+ 
+        this.updatePlayButtonIcon(false);
         
         // Load song data
         const songData = await this.loadSongData();
@@ -159,19 +161,18 @@ class KaixinApp {
         this.verseContainer.addEventListener('stone-click', (e) => {
             const { time } = e.detail || {};
             if (typeof time !== 'number') return;
-            const duration = this.audio.duration || this.state.state.duration || 258;
-            const target = Math.max(0, Math.min(duration, time));
-            this.audio.currentTime = target;
-            this.audioSync.seekTo(target);
-            this.updateTimeline({ currentTime: target, duration });
+            this.seekTo(time);
         });
     }
 
     /** Settings dialog (drag to reorder, toggles) */
     setupSettings() {
         // Load dark mode preference from localStorage
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (isDarkMode) {
+        const isDarkMode = localStorage.getItem('darkMode');
+        if (isDarkMode === 'false') {
+            document.body.classList.remove('dark-mode');
+            this.darkModeToggle.checked = false;
+        } else {
             document.body.classList.add('dark-mode');
             this.darkModeToggle.checked = true;
         }
@@ -261,6 +262,8 @@ class KaixinApp {
         } else {
             this.startPlayback();
         }
+
+        this.updatePlayButtonIcon(!isPlaying);
     }
     
     /**
@@ -276,6 +279,11 @@ class KaixinApp {
         try {
             await this.audio.play();
             this.state.setState({ isPlaying: true });
+            if (!this.state.state.introComplete) {
+                this.state.setState({ introComplete: true });
+                document.body.classList.remove('app-intro');
+            }
+            this.updatePlayButtonIcon(true);
             
             // Start sync (this will emit verse-change and show first verse)
             this.audioSync.startSync();
@@ -296,9 +304,7 @@ class KaixinApp {
         this.audio.pause();
         this.audioSync.stopSync();
         this.state.setState({ isPlaying: false });
-        
-        this.timeline.classList.remove('visible');
-        this.translationDisplay.classList.remove('visible');
+        this.updatePlayButtonIcon(false);
         
         // Reset time display (if present)
         if (this.timelineTimeDisplay) {
@@ -331,11 +337,30 @@ class KaixinApp {
      * Skip forward/back by seconds
      */
     nudge(seconds) {
-        const duration = this.audio.duration || this.state.state.duration || 258;
+        const duration = this.audio.duration || 258;
         const target = Math.max(0, Math.min(duration, (this.audio.currentTime || 0) + seconds));
-        this.audio.currentTime = target;
-        this.audioSync.seekTo(target);
-        this.updateTimeline({ currentTime: target, duration });
+        this.seekTo(target);
+    }
+
+    /**
+     * Centralized seek method
+     */
+    seekTo(time) {
+        if (!this.audio) return;
+        
+        const duration = this.audio.duration || 258;
+        const targetTime = Math.max(0, Math.min(duration, time));
+        
+        // Simply set the time - this is all that's needed
+        this.audio.currentTime = targetTime;
+        
+        // Update audio-sync to the new position
+        if (this.audioSync) {
+            this.audioSync.seekTo(targetTime);
+        }
+        
+        // Update timeline immediately
+        this.updateTimeline({ currentTime: targetTime, duration });
     }
 
     /**
@@ -369,21 +394,9 @@ class KaixinApp {
         const seekToPosition = (x) => {
             const rect = track.getBoundingClientRect();
             const position = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
-            
-            // Use audio.duration directly (more reliable)
-            const duration = this.audio.duration || this.state.state.duration || 258;
+            const duration = this.audio.duration || 258;
             const time = position * duration;
-            
-            console.log(`Timeline: Seeking to ${time.toFixed(2)}s (${(position * 100).toFixed(1)}%)`);
-            
-            // Directly set audio time
-            this.audio.currentTime = time;
-            
-            // Also notify audio-sync to update its state
-            this.audioSync.seekTo(time);
-            
-            // Force immediate timeline update
-            this.updateTimeline({ currentTime: time, duration: duration });
+            this.seekTo(time);
         };
         
         track.addEventListener('mousedown', (e) => {
@@ -401,9 +414,6 @@ class KaixinApp {
         });
         
         document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                console.log('Timeline: Drag ended');
-            }
             isDragging = false;
         });
         
@@ -533,6 +543,28 @@ class KaixinApp {
             
             // Keep base fireflies visible throughout (no hide call)
         }, totalDelay);
+    }
+
+    updatePlayButtonIcon(isPlaying) {
+        if (!this.ctrlPlay) return;
+        this.ctrlPlay.innerHTML = isPlaying ? this.getPauseIcon() : this.getPlayIcon();
+    }
+
+    getPlayIcon() {
+        return `
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6.375 4.125L13.5 9L6.375 13.875V4.125Z" fill="currentColor"/>
+            </svg>
+        `;
+    }
+
+    getPauseIcon() {
+        return `
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="5" y="4" width="3" height="10" rx="0.6" fill="currentColor"/>
+                <rect x="10" y="4" width="3" height="10" rx="0.6" fill="currentColor"/>
+            </svg>
+        `;
     }
 }
 

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles/stone.css">
     <link rel="stylesheet" href="./styles/animations.css">
 </head>
-<body>
+<body class="dark-mode">
     <!-- Title overlay (fades out) -->
     <div class="title-overlay">
         <h1 class="title">但願人長久</h1>
@@ -153,6 +153,11 @@
             /* Safe area for mobile devices (notch, home indicator) */
             padding-bottom: env(safe-area-inset-bottom);
         }
+
+        body.dark-mode .timeline {
+            background: linear-gradient(to top, rgba(12,13,16,0.88), rgba(12,14,18,0.6), transparent);
+            backdrop-filter: blur(12px) saturate(130%);
+        }
         
         .timeline.visible { opacity: 1; pointer-events: auto; }
         
@@ -171,6 +176,13 @@
             padding: 10px 14px;
             backdrop-filter: blur(16px) saturate(180%);
             margin-bottom: 12px; /* Add space from bottom of screen */
+        }
+
+        body.dark-mode .player-shell {
+            background: linear-gradient(180deg, rgba(18, 20, 26, 0.94), rgba(12, 14, 20, 0.9));
+            border: 1px solid rgba(72, 78, 92, 0.55);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+            backdrop-filter: blur(18px) saturate(140%);
         }
         .controls { display: flex; gap: 10px; align-items: center; }
         .ctrl {
@@ -191,10 +203,24 @@
             align-items: center;
             justify-content: center;
         }
+        body.dark-mode .ctrl {
+            border: 1px solid rgba(86, 92, 108, 0.55);
+            background: linear-gradient(180deg, rgba(31, 34, 42, 0.92), rgba(24, 26, 34, 0.92));
+            color: var(--carved-medium);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
         .ctrl:hover { 
             transform: translateY(-1px); 
             background: rgba(255, 255, 255, 0.25);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode .ctrl:hover {
+            background: linear-gradient(180deg, rgba(36, 40, 50, 0.96), rgba(28, 32, 40, 0.96));
+            box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .ctrl:active {
+            background: linear-gradient(180deg, rgba(24, 26, 34, 0.95), rgba(20, 22, 30, 0.95));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5) inset;
         }
         .ctrl:active { 
             transform: translateY(0); 
@@ -218,6 +244,7 @@
             position: relative;
             cursor: pointer;
         }
+        body.dark-mode .timeline-track { background: #2a2e35; }
         
         .timeline-progress {
             position: absolute;
@@ -229,6 +256,7 @@
             width: 0%;
             transition: width 0.1s linear;
         }
+        body.dark-mode .timeline-progress { background: var(--gold-primary); }
         
         .timeline-handle {
             position: absolute;
@@ -242,6 +270,10 @@
             transform: translate(-50%, -50%);
             transition: left 0.1s linear;
             box-shadow: 0 2px 4px var(--shadow-ambient);
+        }
+        body.dark-mode .timeline-handle {
+            background: var(--gold-primary);
+            border-color: #0e0f12;
         }
         
         .timeline-handle:hover {
@@ -287,6 +319,11 @@
             cursor: pointer;
             z-index: 1001;
             padding: 0;
+        }
+        body.dark-mode .settings-flower {
+            background: #ffffff;
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
         }
         .settings-flower img { width: 30px; height: 30px; opacity: .9; filter: saturate(.7); }
         .settings-flower:hover { transform: translateY(-1px); }
@@ -421,7 +458,7 @@
             
             /* Adjust translation position to avoid timeline overlap */
             .translation-display {
-                bottom: 20vh;
+                bottom: 22vh;
                 width: 90%;
                 padding: 0 1rem;
                 font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -429,15 +466,16 @@
             
             /* Make player bar more compact and higher from bottom */
             .timeline {
-                height: 90px;
+                height: 82px;
             }
             
             .player-shell {
                 width: 96vw;
-                grid-template-columns: auto 100px 1fr;
+                grid-template-columns: auto 1fr;
                 gap: 0.6rem;
                 padding: 8px 10px;
                 margin-bottom: 16px; /* More space on mobile */
+                margin-top: 6px;
             }
             
             /* Smaller controls */
@@ -459,11 +497,16 @@
             
             .controls {
                 gap: 6px;
+                grid-column: 1;
+            }
+
+            .time-group {
+                display: none;
             }
             
             /* Smaller time display */
-            .time-group {
-                font-size: 12px;
+            .timeline-track {
+                grid-column: 2;
             }
             
             /* Settings button - keep accessible */
@@ -520,6 +563,7 @@
                 grid-template-rows: auto auto;
                 gap: 0.5rem;
                 padding: 8px;
+                margin-top: 8px;
             }
             
             /* Center controls and time on small screens */
@@ -532,6 +576,7 @@
                 order: 1;
                 text-align: center;
                 margin-bottom: 4px;
+                display: none;
             }
             
             .timeline-track {

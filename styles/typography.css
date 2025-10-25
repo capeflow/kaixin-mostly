@@ -8,6 +8,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark mode type polish */
+body.dark-mode {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 /* Hanzi characters - large, elegant */
 .hanzi {
     font-size: clamp(2rem, 3.5vw, 2.8rem);
@@ -16,8 +22,14 @@ body {
     line-height: 1;
     letter-spacing: 0.02em;
     text-shadow: 
-        1px 1px 1px var(--stone-light),
-        -1px -1px 1px var(--shadow-soft);
+        0 1px 0 rgba(255,255,255,0.6),
+        0 0 0 transparent;
+}
+
+/* Subtler embossing in dark mode (invert) */
+body.dark-mode .hanzi {
+    color: var(--carved-deep);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
 
 /* Pinyin - smaller, subtle */
@@ -31,7 +43,12 @@ body {
     opacity: 0.85;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     text-transform: lowercase;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .pinyin {
+    color: var(--carved-medium);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
 
 /* English meaning */
@@ -46,6 +63,8 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+body.dark-mode .english { color: var(--carved-light); opacity: 0.85; }
+
 /* Translation - elegant, readable */
 .translation,
 .translation-display {
@@ -56,6 +75,11 @@ body {
     font-weight: 400;
     font-family: 'Georgia', 'Times New Roman', serif;
     text-align: center;
+}
+
+body.dark-mode .translation,
+body.dark-mode .translation-display {
+    color: var(--carved-medium);
 }
 
 /* Title */
@@ -74,6 +98,8 @@ body {
     font-family: 'Georgia', serif;
     font-style: italic;
 }
+
+body.dark-mode .subtitle { color: var(--carved-light); opacity: 0.85; }
 
 /* Mobile typography adjustments */
 @media screen and (max-width: 768px) {

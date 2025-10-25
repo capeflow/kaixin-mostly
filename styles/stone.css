@@ -18,30 +18,71 @@
 /* Stone top section - character area */
 .stone-top {
     background: var(--stone-base);
-    border-radius: 6px 6px 0 0;
+    border-radius: 16px 16px 10px 10px;
     padding: clamp(0.8rem, 1.5vw, 1.2rem);
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: clamp(75px, 10vw, 90px);
-    box-shadow: var(--stone-sunken);
     transition: all var(--transition-medium);
     position: relative;
     z-index: 1;
 }
 
+.stone:not(.golden-active) .stone-top {
+    box-shadow:
+        inset 7px 7px 16px rgba(204, 200, 190, 0.7),
+        inset -7px -7px 16px rgba(255, 255, 252, 0.95);
+}
+
+body.dark-mode .stone-top {
+    background: var(--stone-base);
+}
+
+body.dark-mode .stone:not(.golden-active) .stone-top {
+    box-shadow:
+        inset 8px 8px 18px rgba(0, 0, 0, 0.78),
+        inset -6px -6px 14px rgba(96, 104, 120, 0.2);
+}
+
+/* Dark: reduce contrast on gradients for minimalist look */
+body.dark-mode .stone-bottom, 
+body.dark-mode .stone-band {
+    background: linear-gradient(195deg,
+        color-mix(in srgb, var(--stone-dark) 90%, black) 0%,
+        color-mix(in srgb, var(--stone-base) 80%, white) 100%);
+}
+
 /* Stone bottom section - pinyin/meaning */
 .stone-bottom, .stone-band {
-    background: linear-gradient(180deg, var(--stone-dark) 0%, var(--stone-base) 100%);
-    border-radius: 0 0 6px 6px;
+    background: var(--stone-base);
+    border-radius: 12px;
     padding: clamp(0.5rem, 1vw, 0.7rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: clamp(35px, 5vw, 40px);
-    box-shadow: inset 0 2px 4px var(--shadow-soft);
     transition: all var(--transition-medium);
+}
+
+.stone:not(.golden-active) .stone-bottom,
+.stone:not(.golden-active) .stone-band {
+    box-shadow:
+        inset 6px 6px 14px rgba(214, 210, 200, 0.65),
+        inset -6px -6px 14px rgba(255, 255, 252, 0.92);
+}
+
+body.dark-mode .stone-bottom,
+body.dark-mode .stone-band {
+    background: var(--stone-base);
+}
+
+body.dark-mode .stone:not(.golden-active) .stone-bottom,
+body.dark-mode .stone:not(.golden-active) .stone-band {
+    box-shadow:
+        inset 7px 7px 16px rgba(0, 0, 0, 0.78),
+        inset -5px -5px 12px rgba(110, 118, 134, 0.18);
 }
 
 /* Optional middle section for future use */
@@ -61,6 +102,11 @@
     z-index: 0;
 }
 
+/* Dark mode: cooler, subtler ambient wash */
+body.dark-mode .verse.active::before {
+    display: none;
+}
+
 /* Verse container */
 .verse-container {
     width: 100vw;
@@ -78,18 +124,18 @@
 
 .verse-container.active { opacity: 1; pointer-events: auto; }
 
-/* Mobile - shift verse content much higher to prevent overlap with translation */
+/* Mobile - shift verse content to optimal position to prevent overlap with translation */
 @media screen and (max-width: 768px) {
     .verse-container {
-        justify-content: flex-start;
-        padding: 20vh 8vw 25vh 8vw;
+        justify-content: center;
+        padding: 0vh 8vw 22vh 8vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     .verse-container {
-        justify-content: flex-start;
-        padding: 18vh 6vw 30vh 6vw;
+        justify-content: center;
+        padding: 0vh 6vw 25vh 6vw;
     }
 }
 
@@ -114,18 +160,17 @@
     transform: translateX(0);
 }
 
-/* Mobile verse adjustments - reduce padding to fit higher on screen */
+/* Mobile verse adjustments - reduce padding to fit better on screen */
 @media screen and (max-width: 768px) {
     .verse {
-        padding: 2vh 4vw;
+        padding: 3vh 4vw;
         gap: clamp(0.6rem, 1.5vh, 1.2rem);
-        justify-content: flex-start;
     }
 }
 
 @media screen and (max-width: 480px) {
     .verse {
-        padding: 1vh 3vw;
+        padding: 2vh 3vw;
         gap: clamp(0.5rem, 1.2vh, 1rem);
     }
 }
@@ -170,7 +215,7 @@
 
 @media screen and (max-width: 480px) {
     .translation-display {
-        bottom: 16vh;
+        bottom: 26vh;
         width: 92%;
         padding: 0 0.75rem;
     }

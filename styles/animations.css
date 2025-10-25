@@ -8,63 +8,54 @@
 
 .stone.golden-active .stone-top {
     box-shadow: 
-        inset -2px -2px 8px rgba(255, 215, 0, 0.3),
-        inset 2px 2px 8px rgba(255, 255, 255, 0.8),
-        0 0 20px rgba(255, 215, 0, 0.6),
-        0 0 40px rgba(255, 215, 0, 0.3),
+        inset -2px -2px 8px rgba(255, 215, 0, 0.25),
+        inset 2px 2px 8px rgba(255, 255, 255, 0.7),
+        0 0 18px rgba(255, 215, 0, 0.45),
         0 8px 24px var(--shadow-ambient);
     background: linear-gradient(135deg, 
         var(--gold-bg) 0%, 
         var(--gold-bg-light) 100%);
 }
 
-/* Golden border glow animation */
-.stone.golden-active .stone-top::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    border-radius: 6px;
-    background: linear-gradient(135deg, 
-        rgba(255, 215, 0, 0.5), 
-        rgba(255, 230, 100, 0.3),
-        rgba(255, 215, 0, 0.5));
-    z-index: -1;
-    opacity: 0;
-    animation: goldenGlow 1.2s ease-in-out;
+/* Dark mode: keep highlight crisp, avoid halo blur */
+body.dark-mode .stone.golden-active {
+    transform: scale(1.06);
 }
 
-@keyframes goldenGlow {
-    0% {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.02);
-    }
-    100% {
-        opacity: 0.6;
-        transform: scale(1);
-    }
+body.dark-mode .stone.golden-active .stone-top {
+    box-shadow:
+        inset -1px -1px 6px rgba(228, 199, 124, 0.35),
+        inset 2px 2px 6px rgba(255, 244, 208, 0.55),
+        0 0 14px rgba(228, 199, 124, 0.5),
+        0 12px 28px rgba(0, 0, 0, 0.7),
+        -6px -6px 16px rgba(120, 128, 140, 0.12);
+    background: linear-gradient(140deg, rgba(64, 54, 28, 0.95), rgba(92, 74, 32, 0.85));
 }
 
 /* Character gets golden text effect */
 .stone.golden-active .hanzi {
     color: #8B7355;
     text-shadow: 
-        0 0 10px rgba(255, 215, 0, 0.4),
-        1px 1px 2px rgba(255, 255, 255, 0.9),
-        -1px -1px 1px rgba(218, 165, 32, 0.3);
+        0 0 8px rgba(255, 215, 0, 0.35),
+        1px 1px 2px rgba(255, 255, 255, 0.85),
+        -1px -1px 1px rgba(218, 165, 32, 0.25);
+}
+
+body.dark-mode .stone.golden-active .hanzi {
+    color: #fff4d4;
+    text-shadow: 0 0 6px rgba(228, 199, 124, 0.55);
 }
 
 /* Pinyin gets enhanced */
 .stone.golden-active .pinyin {
     color: #8B7355;
     font-weight: 600;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 1);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+body.dark-mode .stone.golden-active .pinyin {
+    color: #e4c77c;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
 }
 
 /* Title fade in/out */
@@ -297,14 +288,14 @@ body.interlude-mode {
 }
 
 body.interlude-mode .timeline {
-    background: linear-gradient(to top, rgba(30, 40, 60, 0.7), rgba(20, 30, 50, 0.5), transparent);
+    background: linear-gradient(to top, rgba(22, 25, 33, 0.7), rgba(16, 20, 28, 0.5), transparent);
     backdrop-filter: blur(15px);
     transition: background 3s ease;
 }
 
 body.interlude-mode .player-shell {
-    background: rgba(30, 40, 60, 0.6);
-    border: 1px solid rgba(150, 170, 200, 0.25);
+    background: rgba(22, 25, 33, 0.6);
+    border: 1px solid rgba(120, 140, 170, 0.25);
     backdrop-filter: blur(15px);
     transition: all 3s ease;
 }

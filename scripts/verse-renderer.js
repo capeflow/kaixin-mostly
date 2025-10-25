@@ -50,7 +50,13 @@ export class VerseRenderer {
         verseEl.dataset.translation = verse.translation; // Store for later use
 
         // Parametric break: use verse.breakAfter to split into (max) two rows
-        const breakAfter = Number.isInteger(verse.breakAfter) ? Math.max(0, Math.min(verse.characters.length, verse.breakAfter)) : null;
+        let breakAfter = Number.isInteger(verse.breakAfter) ? Math.max(0, Math.min(verse.characters.length, verse.breakAfter)) : null;
+        if (breakAfter) {
+            const remaining = verse.characters.length - breakAfter;
+            if (remaining === 1 && breakAfter > 1) {
+                breakAfter -= 1;
+            }
+        }
         const rows = breakAfter ? [
             verse.characters.slice(0, breakAfter),
             verse.characters.slice(breakAfter)

@@ -49,42 +49,42 @@
 
 /* Dark Mode */
 body.dark-mode {
-    /* Dark backgrounds - charcoal and deep grays */
-    --paper: #1a1a1a;
+    /* Dark backgrounds - refined charcoal neutrals */
+    --paper: #0e0f12; /* app canvas */
     --paper-shadow: rgba(255, 255, 255, 0.02);
     
-    /* Dark stone tiles */
-    --stone-base: #2a2a2a;
-    --stone-light: #333333;
-    --stone-dark: #222222;
+    /* Stone - matte tiles in subtle steps */
+    --stone-base: #14161a;
+    --stone-light: #1b1e23;
+    --stone-dark: #0d1117;
     
-    /* Light text for dark mode */
-    --carved-deep: #e0e0e0;
-    --carved-medium: #c0c0c0;
-    --carved-light: #a0a0a0;
+    /* Typography tones */
+    --carved-deep: #e6e8ee;   /* primary text */
+    --carved-medium: #b4b8c2; /* secondary */
+    --carved-light: #8b90a0;  /* tertiary */
     
-    /* Adjusted gold for dark mode */
-    --gold-primary: rgb(255, 215, 100);
-    --gold-light: rgb(255, 230, 150);
-    --gold-dark: rgb(218, 180, 60);
-    --gold-bg: rgba(60, 55, 40, 1);
-    --gold-bg-light: rgba(70, 65, 50, 1);
+    /* Calmer gold for highlights */
+    --gold-primary: #e4c77c;
+    --gold-light: #f1d892;
+    --gold-dark: #c6a960;
+    --gold-bg: rgba(64, 54, 28, 0.7);
+    --gold-bg-light: rgba(72, 62, 35, 0.7);
     
-    /* Dark borders */
-    --border-color: #404040;
+    /* Borders */
+    --border-color: #2a2e35;
     
-    /* Inverted shadows for depth */
-    --shadow-ambient: rgba(0, 0, 0, 0.3);
-    --shadow-direct: rgba(0, 0, 0, 0.5);
-    --shadow-soft: rgba(0, 0, 0, 0.2);
+    /* Depth shadows tuned for dark UI */
+    --shadow-ambient: rgba(0, 0, 0, 0.6);
+    --shadow-direct: rgba(0, 0, 0, 0.8);
+    --shadow-soft: rgba(0, 0, 0, 0.3);
     
-    /* Dark stone depth */
+    /* Stone depth */
     --stone-sunken: 
-        inset 3px 3px 6px rgba(0, 0, 0, 0.4),
-        inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+        inset 3px 3px 6px rgba(0, 0, 0, 0.55),
+        inset -2px -2px 6px rgba(255, 255, 255, 0.03);
     --stone-raised: 
-        -4px -4px 8px rgba(255, 255, 255, 0.02),
-        4px 4px 8px rgba(0, 0, 0, 0.3),
-        inset -1px -1px 2px rgba(0, 0, 0, 0.2);
+        -4px -4px 8px rgba(255, 255, 255, 0.03),
+        4px 4px 10px rgba(0, 0, 0, 0.7),
+        inset -1px -1px 2px rgba(255, 255, 255, 0.02);
 }
 
