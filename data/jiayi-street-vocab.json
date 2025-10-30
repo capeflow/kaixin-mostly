@@ -1,0 +1,396 @@
+{
+  "metadata": {
+    "title": "嘉義街中心",
+    "titlePinyin": "Jiāyì jiē zhōngxīn",
+    "titleEnglish": "Jiayi Street Center",
+    "backgroundImage": "./public/OCT1_07.jpg",
+    "description": "Learn vocabulary from a Taiwanese street scene"
+  },
+  "lessons": [
+    {
+      "category": "People & Commerce",
+      "items": [
+        {
+          "chinese": "攤販",
+          "pinyin": "tān fàn",
+          "english": "vendor",
+          "wordByWord": "stall + vendor",
+          "cantonese": "taan1 faan3"
+        },
+        {
+          "chinese": "人",
+          "pinyin": "rén",
+          "english": "person",
+          "wordByWord": "person",
+          "cantonese": "jan4"
+        },
+        {
+          "chinese": "阿媽",
+          "pinyin": "ā mā",
+          "english": "grandma",
+          "wordByWord": "grandma",
+          "cantonese": "aa3 maa1"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一個攤販",
+        "pinyin": "wǒ kàn dào yī gè tān fàn",
+        "english": "I see a vendor",
+        "wordByWord": "I + see + arrive + one + [classifier] + vendor"
+      }
+    },
+    {
+      "category": "Buildings & Structures",
+      "items": [
+        {
+          "chinese": "商店",
+          "pinyin": "shāng diàn",
+          "english": "shop",
+          "wordByWord": "commerce + store",
+          "cantonese": "soeng1 dim3"
+        },
+        {
+          "chinese": "招牌",
+          "pinyin": "zhāo pái",
+          "english": "store sign",
+          "wordByWord": "beckoning + sign",
+          "cantonese": "ziu1 paai4"
+        },
+        {
+          "chinese": "屋頂",
+          "pinyin": "wū dǐng",
+          "english": "roof",
+          "wordByWord": "house + top",
+          "cantonese": "uk1 deng2"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "那裡有一間商店",
+        "pinyin": "nà lǐ yǒu yī jiān shāng diàn",
+        "english": "There is a shop over there",
+        "wordByWord": "that + place + have + one + [classifier] + shop"
+      }
+    },
+    {
+      "category": "Nature & Sky",
+      "items": [
+        {
+          "chinese": "雲",
+          "pinyin": "yún",
+          "english": "cloud",
+          "wordByWord": "cloud",
+          "cantonese": "wan4"
+        },
+        {
+          "chinese": "光",
+          "pinyin": "guāng",
+          "english": "light",
+          "wordByWord": "light",
+          "cantonese": "gwong1"
+        },
+        {
+          "chinese": "影子",
+          "pinyin": "yǐng zi",
+          "english": "shadow",
+          "wordByWord": "shadow + [suffix]",
+          "cantonese": "jing2 zi2"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一朵雲",
+        "pinyin": "wǒ kàn dào yī duǒ yún",
+        "english": "I see a cloud",
+        "wordByWord": "I + see + arrive + one + [classifier] + cloud"
+      }
+    },
+    {
+      "category": "Clothing",
+      "items": [
+        {
+          "chinese": "鞋子",
+          "pinyin": "xié zi",
+          "english": "shoes",
+          "wordByWord": "shoe + [suffix]",
+          "cantonese": "haai4 zi2"
+        },
+        {
+          "chinese": "衣服",
+          "pinyin": "yī fu",
+          "english": "clothes",
+          "wordByWord": "clothing + garment",
+          "cantonese": "ji1 fuk6"
+        },
+        {
+          "chinese": "帽子",
+          "pinyin": "mào zi",
+          "english": "hat",
+          "wordByWord": "hat + [suffix]",
+          "cantonese": "mou6 zi2"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一雙鞋子",
+        "pinyin": "wǒ kàn dào yī shuāng xié zi",
+        "english": "I see a pair of shoes",
+        "wordByWord": "I + see + arrive + one + pair + shoes"
+      }
+    },
+    {
+      "category": "Transportation",
+      "items": [
+        {
+          "chinese": "車子",
+          "pinyin": "chē zi",
+          "english": "car",
+          "wordByWord": "vehicle + [suffix]",
+          "cantonese": "ce1 zi2"
+        },
+        {
+          "chinese": "推車",
+          "pinyin": "tuī chē",
+          "english": "pushcart",
+          "wordByWord": "push + cart",
+          "cantonese": "teoi1 ce1"
+        },
+        {
+          "chinese": "輪子",
+          "pinyin": "lún zi",
+          "english": "wheel",
+          "wordByWord": "wheel + [suffix]",
+          "cantonese": "leon4 zi2"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "那裡有一台車子",
+        "pinyin": "nà lǐ yǒu yī tái chē zi",
+        "english": "There is a car over there",
+        "wordByWord": "that + place + have + one + [classifier] + car"
+      }
+    },
+    {
+      "category": "Street Elements",
+      "items": [
+        {
+          "chinese": "路牌",
+          "pinyin": "lù pái",
+          "english": "street sign",
+          "wordByWord": "road + sign",
+          "cantonese": "lou6 paai4"
+        },
+        {
+          "chinese": "電線桿",
+          "pinyin": "diàn xiàn gān",
+          "english": "electricity pole",
+          "wordByWord": "electricity + wire + pole",
+          "cantonese": "din6 sin3 gon1"
+        },
+        {
+          "chinese": "花",
+          "pinyin": "huā",
+          "english": "flower",
+          "wordByWord": "flower",
+          "cantonese": "faa1"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一朵花",
+        "pinyin": "wǒ kàn dào yī duǒ huā",
+        "english": "I see a flower",
+        "wordByWord": "I + see + arrive + one + [classifier] + flower"
+      }
+    },
+    {
+      "category": "Water & Fountain",
+      "items": [
+        {
+          "chinese": "噴泉",
+          "pinyin": "pēn quán",
+          "english": "fountain",
+          "wordByWord": "spray + spring",
+          "cantonese": "pan3 cyun4"
+        },
+        {
+          "chinese": "水",
+          "pinyin": "shuǐ",
+          "english": "water",
+          "wordByWord": "water",
+          "cantonese": "seoi2"
+        },
+        {
+          "chinese": "礦泉水",
+          "pinyin": "kuàng quán shuǐ",
+          "english": "mineral water",
+          "wordByWord": "mineral + spring + water",
+          "cantonese": "kwong3 cyun4 seoi2"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我喝礦泉水",
+        "pinyin": "wǒ hē kuàng quán shuǐ",
+        "english": "I drink mineral water",
+        "wordByWord": "I + drink + mineral water"
+      }
+    },
+    {
+      "category": "Family",
+      "items": [
+        {
+          "chinese": "奶奶",
+          "pinyin": "nǎi nai",
+          "english": "grandma",
+          "wordByWord": "grandma (title)",
+          "cantonese": "naai5 naai5"
+        },
+        {
+          "chinese": "老奶奶",
+          "pinyin": "lǎo nǎi nai",
+          "english": "old grandma",
+          "wordByWord": "old + grandma",
+          "cantonese": "lou5 naai5 naai5"
+        },
+        {
+          "chinese": "一個",
+          "pinyin": "yī gè",
+          "english": "one",
+          "wordByWord": "one + [classifier]",
+          "cantonese": "jat1 go3"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一個老奶奶",
+        "pinyin": "wǒ kàn dào yī gè lǎo nǎi nai",
+        "english": "I see an old grandma",
+        "wordByWord": "I + see + arrive + one + [classifier] + old + grandma"
+      }
+    },
+    {
+      "category": "Animals",
+      "items": [
+        {
+          "chinese": "狗",
+          "pinyin": "gǒu",
+          "english": "dog",
+          "wordByWord": "dog",
+          "cantonese": "gau2"
+        },
+        {
+          "chinese": "貓",
+          "pinyin": "māo",
+          "english": "cat",
+          "wordByWord": "cat",
+          "cantonese": "maau1"
+        },
+        {
+          "chinese": "一隻",
+          "pinyin": "yī zhī",
+          "english": "one (animals)",
+          "wordByWord": "one + [animal classifier]",
+          "cantonese": "jat1 zek3"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一隻狗",
+        "pinyin": "wǒ kàn dào yī zhī gǒu",
+        "english": "I see a dog",
+        "wordByWord": "I + see + arrive + one + [classifier] + dog"
+      }
+    },
+    {
+      "category": "Nature & Trees",
+      "items": [
+        {
+          "chinese": "樹",
+          "pinyin": "shù",
+          "english": "tree",
+          "wordByWord": "tree",
+          "cantonese": "syu6"
+        },
+        {
+          "chinese": "一棵樹",
+          "pinyin": "yī kē shù",
+          "english": "one tree",
+          "wordByWord": "one + [tree classifier] + tree",
+          "cantonese": "jat1 po1 syu6"
+        },
+        {
+          "chinese": "窗戶",
+          "pinyin": "chuāng hù",
+          "english": "window",
+          "wordByWord": "window + door",
+          "cantonese": "coeng1 wu6"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "我看到一棵樹",
+        "pinyin": "wǒ kàn dào yī kē shù",
+        "english": "I see a tree",
+        "wordByWord": "I + see + arrive + one + [classifier] + tree"
+      }
+    },
+    {
+      "category": "Buildings & Housing",
+      "items": [
+        {
+          "chinese": "房子",
+          "pinyin": "fáng zi",
+          "english": "house",
+          "wordByWord": "house + [suffix]",
+          "cantonese": "fong4 zi2"
+        },
+        {
+          "chinese": "飯店",
+          "pinyin": "fàn diàn",
+          "english": "hotel (TW)",
+          "wordByWord": "meal + shop",
+          "cantonese": "faan6 dim3"
+        },
+        {
+          "chinese": "酒店",
+          "pinyin": "jiǔ diàn",
+          "english": "hotel (CH)",
+          "wordByWord": "wine + shop",
+          "cantonese": "zau2 dim3"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "那裡有一間房子",
+        "pinyin": "nà lǐ yǒu yī jiān fáng zi",
+        "english": "There is a house over there",
+        "wordByWord": "that + place + have + one + [classifier] + house"
+      }
+    },
+    {
+      "category": "Greetings & Politeness",
+      "items": [
+        {
+          "chinese": "你好",
+          "pinyin": "nǐ hǎo",
+          "english": "hello",
+          "wordByWord": "you + good",
+          "cantonese": "nei5 hou2"
+        },
+        {
+          "chinese": "謝謝",
+          "pinyin": "xiè xie",
+          "english": "thank you",
+          "wordByWord": "thank + thank",
+          "cantonese": "ze6 ze6"
+        },
+        {
+          "chinese": "商",
+          "pinyin": "shāng",
+          "english": "business",
+          "wordByWord": "commerce/business",
+          "cantonese": "soeng1"
+        }
+      ],
+      "exampleSentence": {
+        "chinese": "你好，謝謝",
+        "pinyin": "nǐ hǎo, xiè xie",
+        "english": "Hello, thank you",
+        "wordByWord": "you + good, + thank + thank"
+      }
+    }
+  ]
+}
+
